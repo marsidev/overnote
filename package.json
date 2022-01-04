@@ -17,7 +17,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "git": "git add . && git commit -m",
-    "post:git": "git push origin main",
+    "postgit": "git push origin main",
     "heroku": "git push heroku main"
   },
   "keywords": [],

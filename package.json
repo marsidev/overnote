@@ -6,6 +6,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": "17.x"
+  },
   "main": "index.js",
   "scripts": {
     "build": "npm run build --workspace=packages/app",
@@ -13,7 +16,8 @@
     "dev:api": "npm run build && npm run dev --workspace=packages/api",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "git": "git add . && git commit -m \"commit using npm scripts 🦄\" && git push origin main",
+    "git": "git add . && git commit -m",
+    "post:git": "git push origin main",
     "heroku": "git push heroku main"
   },
   "keywords": [],

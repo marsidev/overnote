@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspace=packages/app",
+    "start": "npm run start --workspace=packages/api",
+    "dev:api": "npm run build && npm run dev --workspace=packages/api",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "git": "git add . && git commit -m \"commit using npm scripts 🦄\" && git push origin main",
+    "heroku": "git push heroku main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "standard": "^16.0.4"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json",
+    "env": {
+      "es2021": true,
+      "jest": true,
+      "cypress/globals": true
+    },
+    "plugins": [
+      "standard",
+      "cypress"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+      },
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    }
+  }
+}

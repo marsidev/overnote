@@ -1,0 +1,38 @@
+{
+  "name": "@notes-app/backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "test": "cross-env NODE_ENV=test PORT=1234 jest --verbose",
+    "test:watch": "npm run test -- --watch",
+    "test_notes:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/notes.test.js",
+    "test_users:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/users.test.js",
+    "test_login:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/login.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/node": "^6.2.0",
+    "@sentry/tracing": "^6.2.0",
+    "bcrypt": "5.0.1",
+    "cors": "2.8.5",
+    "cross-env": "7.0.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "^6.1.4"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

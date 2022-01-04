@@ -1,0 +1,8 @@
+POST http://localhost:8888/api/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2M5OTdhYTRmMDAyZDE0OTUzMjM2NSIsInVzZXJuYW1lIjoibWFyc2kiLCJpYXQiOjE2NDA4OTEwMTgsImV4cCI6MTY0MTQ5NTgxOH0.My_TJ6xO17hhwTBHNAtq6yKBKmaSDWSJl8JKiktwVTc
+
+{
+  "content": "Nota agregada desde el backend usando la api url de heroku",
+  "important": true
+}

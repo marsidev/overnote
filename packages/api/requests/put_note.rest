@@ -1,0 +1,7 @@
+PUT http://localhost:8888/api/notes/61cde65cccb4a6dde384c25e
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2NhNTc2YTRmMDAyZDE0OTUzMjM2ZCIsInVzZXJuYW1lIjoibWFyc2kyIiwiaWF0IjoxNjQwODkwOTgwLCJleHAiOjE2NDE0OTU3ODB9.xqxFGa3jzlvsnglAjY3o-Ph28H0PVpEkUc5nKk06FEc
+
+{
+  "important": false
+}

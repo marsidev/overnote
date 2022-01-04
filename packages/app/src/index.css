@@ -1,0 +1,7 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css");
+
+.note {
+  color: grey;
+  padding-top: 3px;
+  font-size: 15px;
+}

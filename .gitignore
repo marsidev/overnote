@@ -1,7 +1,6 @@
 node_modules
 .env
 yarn-error.log
-todo.md
 .yarn
 .yarn/*
 !.yarn/patches
@@ -10,3 +9,4 @@ todo.md
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+todo.md

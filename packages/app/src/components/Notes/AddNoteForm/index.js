@@ -28,6 +28,7 @@ const AddNoteForm = ({ addNote }) => {
   const [newNoteTitle, setNewNoteTitle] = useState('')
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [pickedBgColor, setPickedBgColor] = useState('default')
+  const [newPinnedStatus, setNewPinnedStatus] = useState(false)
   const toast = useToast()
 
   const boxRef = useRef(null)
@@ -76,7 +77,7 @@ const AddNoteForm = ({ addNote }) => {
         const noteObject = {
           title: newNoteTitle,
           content: newNoteContent,
-          pinned: false,
+          pinned: newPinnedStatus,
           backgroundColor: pickedBgColor,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
@@ -87,6 +88,7 @@ const AddNoteForm = ({ addNote }) => {
         setIsFormVisible(false)
         setNoteInputBlur()
         setPickedBgColor('default')
+        setNewPinnedStatus(false)
         genToast({ toast, status: 'success', description: 'Note added!' })
         await addNote(noteObject)
       }
@@ -98,6 +100,10 @@ const AddNoteForm = ({ addNote }) => {
   const handleChangeColor = color => {
     const newBgColor = readColorPicked(color, currentTheme)
     setPickedBgColor(newBgColor)
+  }
+
+  const updateNewPinnedStatus = () => {
+    setNewPinnedStatus(!newPinnedStatus)
   }
 
   const themedBorderColor = pickedBgColor === 'default'
@@ -162,11 +168,13 @@ const AddNoteForm = ({ addNote }) => {
 
             {isFormVisible && (
               <IconsGroup
-                handleSubmit={handleSubmit}
                 newNoteContent={newNoteContent}
                 newNoteTitle={newNoteTitle}
+                newPinnedStatus={newPinnedStatus}
+                handleSubmit={handleSubmit}
                 handleChangeColor={handleChangeColor}
-                launchedBy='AddNoteForm'
+                updateNewPinnedStatus={updateNewPinnedStatus}
+                launchedBy={'AddNoteForm'}
               />
             )}
           </form>

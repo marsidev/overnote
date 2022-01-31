@@ -100,7 +100,7 @@ const Form = props => {
           newNoteContent={newNoteContent}
           newNoteTitle={newNoteTitle}
           newPinnedStatus={newPinnedStatus}
-          handleUpdate={handleUpdate}
+          handleSubmit={handleUpdate}
           handleChangeColor={handleChangeColor}
           updateNewPinnedStatus={updateNewPinnedStatus}
           launchedBy={'NoteDetail'}

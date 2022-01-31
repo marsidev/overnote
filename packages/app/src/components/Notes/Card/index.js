@@ -9,6 +9,70 @@ import { CardProps } from '@Utils/props'
 
 const { noteCardProps, noteTitleProps, noteContentProps, noteIconProps, noteIconGroupProps } = CardProps()
 
+const CardTitle = ({ note, openNoteDetail, props }) => {
+  if (note.title === '') return null
+  return (
+    <Box flex='1' onClick={openNoteDetail} p={0}>
+      <Text {...props}>{note.title}</Text>
+    </Box>
+  )
+}
+
+const CardBody = ({ note, openNoteDetail, props }) => {
+  if (note.content === '' && note.title !== '') return null
+  const currentTheme = useColorModeValue('light', 'dark')
+
+  return (
+    <Box
+      flex='1'
+      h='70%'
+      pt={note.title !== '' ? ['.25rem', '.55rem', '.65rem', '.75rem'] : '0'}
+      onClick={openNoteDetail}
+    >
+      {note.content !== ''
+        ? <Text {...props}>{note.content}</Text>
+        : <Text
+            color={currentTheme === 'light' ? 'gray.700' : 'gray.200'}
+            fontStyle='italic'
+            {...props}
+          >
+            Empty note
+          </Text>
+      }
+    </Box>
+  )
+}
+
+const CardFooter = (props) => {
+  const { note, iconsOpacity, iconGroupProps, handlePinNote, iconProps, handleChangeColor, handleDelete } = props
+
+  return (
+    <Box flex='1' pt={[2, 3, 4, 4]} mb={-2}>
+      <ButtonGroup opacity={iconsOpacity} {...iconGroupProps}>
+        <IconButton
+          icon={note.pinned ? <MdPushPin /> : <MdOutlinePushPin />}
+          aria-label='Pin note'
+          onClick={handlePinNote}
+          {...iconProps}
+        />
+
+        <ColorPickerLauncher
+          icon={<MdOutlinePalette />}
+          noteIconProps={iconProps}
+          handleChangeColor={handleChangeColor}
+        />
+
+        <IconButton
+          icon={<MdDelete />}
+          aria-label='Delete note'
+          onClick={handleDelete}
+          {...iconProps}
+        />
+      </ButtonGroup>
+    </Box>
+  )
+}
+
 const Card = ({ note, deleteNote, updateNote, openNoteDetail }) => {
   const toast = useToast()
   const [cardIconsOpacity, setCardIconsOpacity] = useState(0)
@@ -60,10 +124,9 @@ const Card = ({ note, deleteNote, updateNote, openNoteDetail }) => {
     'rgba(255, 255, 255, 0.12) 0px 4px 12px, rgba(255, 255, 255, 0.10) 0px 4px 4px'
   )
 
-  const noteBorderColor =
-    note.backgroundColor === 'default'
-      ? borderColors.default[currentTheme]
-      : bgColors[note.backgroundColor][currentTheme]
+  const noteBorderColor = note.backgroundColor === 'default'
+    ? borderColors.default[currentTheme]
+    : bgColors[note.backgroundColor][currentTheme]
 
   const iconsHoverBgColor = useColorModeValue(
     'rgba(95, 99, 104, 0.157)',
@@ -84,74 +147,38 @@ const Card = ({ note, deleteNote, updateNote, openNoteDetail }) => {
   })
 
   return (
-    <>
-      <Box
-        display='flex'
-        flexDirection='column'
-        h='100%'
-        onMouseEnter={() => setCardIconsOpacity(1)}
-        onMouseLeave={() => setCardIconsOpacity(0)}
-        {..._noteCardProps}
-      >
-        {note.title !== '' && (
-          <Box flex='1' minHeight='15%' onClick={openNoteDetail}>
-            <Text {...noteTitleProps}>{note.title}</Text>
-          </Box>
-        )}
+    <Box
+      display='flex'
+      flexDirection='column'
+      h='100%'
+      p={2}
+      onMouseEnter={() => setCardIconsOpacity(1)}
+      onMouseLeave={() => setCardIconsOpacity(0)}
+      {..._noteCardProps}
+    >
 
-        {note.content !== '' && (
-          <Box
-            flex='1'
-            h='70%'
-            pt={note.title !== '' ? '.75rem' : '0'}
-            onClick={openNoteDetail}
-          >
-            <Text {...noteContentProps}>{note.content}</Text>
-          </Box>
-        )}
+      <CardTitle
+        note={note}
+        openNoteDetail={openNoteDetail}
+        props={noteTitleProps}
+      />
 
-        {note.content === '' && (
-          <Box
-            flex='1'
-            h='70%'
-            pt={note.title !== '' ? '.75rem' : '0'}
-            onClick={openNoteDetail}
-          >
-            <Text
-              color={currentTheme === 'light' ? 'gray.700' : 'gray.200'}
-              fontStyle='italic'
-              {...noteContentProps}
-            >
-              Empty note
-            </Text>
-          </Box>
-        )}
+      <CardBody
+        note={note}
+        openNoteDetail={openNoteDetail}
+        props={noteContentProps}
+      />
 
-        <Box flex='1' h='15%' pt={4} mb={-2}>
-          <ButtonGroup opacity={cardIconsOpacity} {...noteIconGroupProps}>
-            <IconButton
-              icon={note.pinned ? <MdPushPin /> : <MdOutlinePushPin />}
-              aria-label='Pin note'
-              onClick={handlePinNote}
-              {..._noteIconProps}
-            />
-
-            <ColorPickerLauncher
-              icon={<MdOutlinePalette />}
-              noteIconProps={_noteIconProps}
-              handleChangeColor={handleChangeColor}
-            />
-
-            <IconButton
-              icon={<MdDelete />}
-              aria-label='Delete note'
-              onClick={handleDelete}
-              {..._noteIconProps}
-            />
-          </ButtonGroup>
-        </Box>
-      </Box>
-    </>
+      <CardFooter
+        note={note}
+        iconsOpacity={cardIconsOpacity}
+        iconGroupProps={noteIconGroupProps}
+        handlePinNote={handlePinNote}
+        iconProps={_noteIconProps}
+        handleChangeColor={handleChangeColor}
+        handleDelete={handleDelete}
+      />
+    </Box>
   )
 }
 

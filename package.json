@@ -10,7 +10,7 @@
   ],
   "engines": {
     "node": "17.x",
-    "yarn": "1.18.x"
+    "yarn": "1.22.x"
   },
   "main": "index.js",
   "scripts": {

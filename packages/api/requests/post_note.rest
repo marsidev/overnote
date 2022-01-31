@@ -1,9 +1,0 @@
-POST http://localhost:8888/api/notes
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjA5MzRjYjA2NDMxODZiM2MwZjRmMyIsInVzZXJuYW1lIjoibWFyc2kiLCJpYXQiOjE2NDMxNjI0NTksImV4cCI6MTY0Mzc2NzI1OX0.f7Ro9wwBtmaYh5XFukbUW8awGJWVJlfPxIrRAgu523Q
-
-{
-  "content": "hola",
-  "pinned": true,
-  "backgroundColor": "teal"
-}

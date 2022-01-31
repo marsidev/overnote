@@ -139,7 +139,10 @@ const AddNoteForm = ({ addNote }) => {
   })
 
   return (
-    <Box w='35%' mb={10}>
+    <Box
+      width={['90%', '70%%', '50%', '35%']}
+      mb={[2, 4, 8, 10]}
+    >
       <Box ref={boxRef} {..._containerProps}>
         <Box
           onFocus={isFormVisible ? null : showMainForm}

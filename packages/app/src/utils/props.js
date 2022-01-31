@@ -39,8 +39,8 @@ export const AddNoteFormProps = () => {
     borderRadius: 8,
     fontSize: '1rem',
     lineHeight: '1.5rem',
-    letterSpacing: '.00625em',
-    mb: 2
+    letterSpacing: '.00625em'
+    // mb: 2
   }
 
   const contentInputPropsWhenFormClosed = {
@@ -103,9 +103,9 @@ export const AddNoteFormProps = () => {
 
 export const CardProps = () => {
   const noteCardProps = {
-    p: 4,
-    maxWidth: '240px',
-    w: ['8px', '100px', '150px', '240px'],
+    p: [3, 3, 4, 4],
+    // maxWidth: '240px',
+    width: ['100%', '160px', '200px', '240px'],
     // h: ['100px', '150px', '200px', '250px'],
     border: '1px solid',
     borderRadius: 8,
@@ -119,9 +119,9 @@ export const CardProps = () => {
 
   const noteTitleProps = {
     fontWeight: '700',
-    fontSize: '.915rem',
-    lineHeight: '1.5rem',
-    letterSpacing: '.00625em',
+    fontSize: ['.860rem', '.885rem', '.900rem', '.915rem'],
+    lineHeight: [1, 1.5, 1.75, 1.5],
+    // letterSpacing: '.00625em',
     fontFamily: '"Open Sans", Roboto, Helvetica, Arial, sans-serif',
     noOfLines: [1, 2, 2, 3]
   }
@@ -129,8 +129,8 @@ export const CardProps = () => {
   const noteContentProps = {
     fontWeight: '400',
     fontSize: '.850rem',
-    lineHeight: '1.25rem',
-    letterSpacing: '.01428571em',
+    lineHeight: [1, 1.25, 1.50, 1.25],
+    // letterSpacing: '.01428571em',
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
     noOfLines: [4, 8, 10, 14]
   }

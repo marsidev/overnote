@@ -178,7 +178,7 @@ const NoteDetail = (props) => {
         isCentered
         blockScrollOnMount={false}
         motionPreset='slideInBottom'
-        size='xl'
+        size='sm'
       >
         <ModalOverlay />
         <ModalContent borderRadius={16}>

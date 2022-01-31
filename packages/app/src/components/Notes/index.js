@@ -19,20 +19,21 @@ const NotesSegment = (props) => {
   if (notesToShow.length === 0) return null
 
   return (
-    <Box p={4}>
+    <Box px={[0, 2, 3, 4]} py={4}>
       <Flex
         alignItems='center'
         justifyContent='center'
         flexWrap='wrap'
-        direction={{ base: 'column', md: 'row' }}
+        direction={['column', 'row', 'row', 'row']}
       >
         {showTitle && (
           <Box w={'100%'}>
             <Text
               fontSize='xs'
               fontWeight='bold'
-              align={'left'}
-              color={'var(--placeholder-color)'}
+              align='left'
+              color='var(--placeholder-color)'
+              textTransform='uppercase'
             >
               {title}
             </Text>
@@ -41,16 +42,20 @@ const NotesSegment = (props) => {
         )}
 
         {notesToShow.map(note => (
-          <div key={note.id} onClick={() => setSelectedId(note.id)}>
-            <Box p={2}>
-              <Card
-                note={note}
-                deleteNote={deleteNote}
-                updateNote={updateNote}
-                openNoteDetail={openNoteDetail}
-              />
-            </Box>
-          </div>
+          <Box
+            w={['100%', 'auto', 'auto', 'auto']}
+            py={2}
+            px={[0, 2, 2, 2]}
+            key={note.id}
+            onClick={() => setSelectedId(note.id)}
+          >
+            <Card
+              note={note}
+              deleteNote={deleteNote}
+              updateNote={updateNote}
+              openNoteDetail={openNoteDetail}
+            />
+          </Box>
         ))}
       </Flex>
     </Box>
@@ -158,7 +163,7 @@ const Notes = ({ ...props }) => {
   useEffect(() => {
     if (user) {
       const notes = window.localStorage.getItem('AppNoteNotes')
-      if (notes) setNotes(JSON.parse(notes))
+      if (notes) setNotes(JSON.parse(notes)) // set notes from local storage while we fetch them from server
       fetchNotes()
       // .then((n) => console.log('Notes fetched', n))
     } else {

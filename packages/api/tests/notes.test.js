@@ -41,11 +41,11 @@ describe('NOTES Tests', () => {
   })
 
   describe('POST tests', () => {
-    test('a new note can be aded', async () => {
+    test('a new note can be added', async () => {
       const { respBody: firstResponse } = await getNotes('/api/notes')
       const newNote = {
         content: 'async/await simplifies making async calls',
-        important: true,
+        pinned: true,
         userId: initialUser._id
       }
       await testPost({
@@ -63,7 +63,7 @@ describe('NOTES Tests', () => {
 
     test('a note without content cannot be added', async () => {
       const { respBody: firstResponse } = await getNotes('/api/notes')
-      const newNote = { important: true }
+      const newNote = { pinned: true }
       await testPost({
         path: '/api/notes',
         expectedStatusCode: 400,
@@ -77,7 +77,7 @@ describe('NOTES Tests', () => {
     test('a note without auth header cannot be added', async () => {
       const newNote = {
         content: 'async/await simplifies making async calls',
-        important: true
+        pinned: true
       }
       await testPost({
         path: '/api/notes',

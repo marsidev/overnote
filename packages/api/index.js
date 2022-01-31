@@ -4,6 +4,7 @@ const { connectToMongo } = require('./middlewares/mongoose')
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const morgan = require('morgan')
 
 const notFound = require('./middlewares/notFound')
 const handleErrors = require('./middlewares/handleErrors')
@@ -16,21 +17,21 @@ const loginRouter = require('./controllers/login')
 // CORS and config
 app.use(cors())
 app.use(express.json())
-// app.use('/images', express.static('images'))
+app.use(morgan('dev'))
+
+// static files
 app.use(express.static('../app/build'))
+app.use('/static', express.static('public'))
 
 // Sentry
-app.use(sentryInit)
-app.use(sentryRequestHandler)
-app.use(sentryTracingHandler)
+if (process.env.NODE_ENV !== 'test') {
+  app.use(sentryInit)
+  app.use(sentryRequestHandler)
+  app.use(sentryTracingHandler)
+}
 
 // Connect to MongoDB
-connectToMongo() // bad practice ?
-
-// Root path
-app.get('/', (request, response) => {
-  response.send('<h1>Hello Unicorn! 🦄</h1>')
-})
+connectToMongo()
 
 // Routing
 app.use('/api/notes', notesRouter)
@@ -44,11 +45,11 @@ if (process.env.NODE_ENV === 'test') {
 
 // Error handling
 app.use(notFound)
-app.use(sentryErrorHandler)
+if (process.env.NODE_ENV !== 'test') app.use(sentryErrorHandler)
 app.use(handleErrors)
 
 // Start server
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 8888
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

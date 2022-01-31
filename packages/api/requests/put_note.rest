@@ -1,7 +1,7 @@
-PUT http://localhost:8888/api/notes/61cde65cccb4a6dde384c25e
+PUT http://localhost:8888/api/notes/61e30b6bdd3ad8750df70e40
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxY2NhNTc2YTRmMDAyZDE0OTUzMjM2ZCIsInVzZXJuYW1lIjoibWFyc2kyIiwiaWF0IjoxNjQwODkwOTgwLCJleHAiOjE2NDE0OTU3ODB9.xqxFGa3jzlvsnglAjY3o-Ph28H0PVpEkUc5nKk06FEc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTMwOTMyOGEzNzlmOGUwZmM5OGU1YyIsInVzZXJuYW1lIjoibnVldm91c3VhYXJpbyIsImlhdCI6MTY0MjI2OTIxOCwiZXhwIjoxNjQyODc0MDE4fQ.8BK_mYV7Hw0s-foMUtEto763GUZKdBk9nRBnbs8DbJk
 
 {
-  "important": false
+  "pinned": true
 }

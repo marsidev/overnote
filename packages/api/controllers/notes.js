@@ -1,103 +1,114 @@
 const express = require('express')
+const crypto = require('crypto')
 const router = express.Router()
 const Note = require('../models/Note')
 const User = require('../models/User')
 const userExtractor = require('../middlewares/userExtractor')
 
-router.get('/', (request, response, next) => {
-  Note.find({})
-    .populate('user', {
-      username: 1,
-      name: 1
-    })
-    .then(notes => {
-      response.json(notes)
-    })
-    .catch(error => {
-      next(error)
-    })
-})
-
-router.get('/:id', (request, response, next) => {
-  const { id } = request.params
-
-  Note.findById(id)
-    .then(note => (note ? response.json(note) : response.status(404).end()))
-    .catch(err => next(err))
-})
-
-router.put('/:id', userExtractor, async (request, response, next) => {
-  const { id: noteId } = request.params
-  const { userId } = request
-  const noteToUpdate = request.body
-
-  const newInfo = {
-    content: noteToUpdate.content,
-    important: noteToUpdate.important || false
-  }
-
-  // Check if the note exists
-  const note = await Note.findById(noteId)
-  if (!note) return response.status(404).send({ error: 'note not found' })
-
-  // Check if the user is the owner of the note
-  if (userId !== note.user._id.toString()) return response.status(401).send({ error: 'unauthorized' })
-
-  // Update the note
-  Note.findByIdAndUpdate(noteId, newInfo, { new: true })
-    .then(result => response.json(result))
-    .catch(err => next(err))
-})
-
-router.delete('/:id', userExtractor, async (request, response, next) => {
-  const { id: noteId } = request.params
-  const { userId } = request
-
-  // Note.findByIdAndRemove(id)
-  //   .then((d) => response.status(204).end())
-  //   .catch(err => next(err))
-
-  // Check if the note exists
-  const note = await Note.findById(noteId)
-  if (!note) return response.status(404).send({ error: 'note not found' })
-
-  // Check if the user is the owner of the note
-  if (userId !== note.user._id.toString()) return response.status(401).send({ error: 'unauthorized' })
-
-  // Delete the note
-  await Note.findByIdAndRemove(noteId)
-  response.status(204).end()
-})
-
-router.post('/', userExtractor, async (request, response, next) => {
-  const { content, important = false } = request.body
-  const { userId } = request
-
-  const user = await User.findById(userId)
-
-  if (!content) return response.status(400).json({ error: 'content is required' })
-  if (!userId) return response.status(400).json({ error: 'userId is required' })
-  if (!user) return response.status(400).json({ error: 'userId is invalid' })
-
-  const newNote = new Note({
-    content,
-    date: new Date(),
-    important,
-    user: user._id
-  })
-
-  // newNote
-  //   .save()
-  //   .then(savedNote => response.status(200).json(savedNote))
-  //   .catch(err => next(err))
-
+router.get('/', userExtractor, async (req, res, next) => {
   try {
-    const savedNote = await newNote.save()
-    user.notes = user.notes.concat(savedNote._id)
-    await user.save()
-    response.status(201).json(savedNote)
+    const { userId } = req
+    const notes = await Note
+      .find({ createdBy: userId })
+      .populate('createdBy', { username: 1, name: 1 })
+    res.json(notes)
   } catch (error) {
-    // console.error(error)
+    next(error)
+  }
+})
+
+router.get('/:id', userExtractor, async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const { userId } = req
+    const note = await Note.findOne({ _id: id, user: userId })
+    if (!note) return res.status(404).end()
+    res.json(note)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id', userExtractor, async (req, res, next) => {
+  try {
+    const { id: noteId } = req.params
+    const { userId } = req
+    const noteToUpdate = req.body
+
+    const newInfo = {
+      title: noteToUpdate.title,
+      content: noteToUpdate.content,
+      backgroundColor: noteToUpdate.backgroundColor,
+      pinned: noteToUpdate.pinned || false
+    }
+
+    // Check if the note exists
+    const note = await Note.findById(noteId)
+    if (!note) return res.status(404).send({ error: 'note not found' })
+
+    // Check if the user is the owner of the note
+    if (userId !== note.createdBy) return res.status(401).send({ error: 'unauthorized' })
+
+    // Update the note
+    const result = await Note.findByIdAndUpdate(noteId, newInfo, { new: true })
+    res.json(result)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id', userExtractor, async (req, res, next) => {
+  try {
+    const { id: noteId } = req.params
+    const { userId } = req
+
+    // Check if the note exists
+    const note = await Note.findById(noteId)
+    if (!note) return res.status(404).send({ error: 'note not found' })
+
+    // Check if the user is the owner of the note
+    if (userId !== note.createdBy) return res.status(401).send({ error: 'unauthorized' })
+
+    const user = await User.findById(userId)
+
+    // Delete the note
+    await Note.findByIdAndRemove(noteId)
+    user.notes = user.notes.filter(id => id !== noteId)
+    await user.save()
+    res.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', userExtractor, async (req, res, next) => {
+  try {
+    const { title = '', content = '', pinned = false, backgroundColor = 'default', id } = req.body
+    const { userId } = req
+
+    const user = await User.findById(userId)
+
+    // if (!content && !title) return res.status(400).json({ error: 'content or title are required' })
+    if (!userId) return res.status(400).json({ error: 'userId is required' })
+    if (!user) return res.status(400).json({ error: 'user is invalid' })
+
+    // console.log(id)
+    const noteId = id || crypto.randomUUID()
+
+    const newNote = new Note({
+      _id: noteId,
+      content,
+      title,
+      pinned,
+      backgroundColor,
+      createdBy: user._id
+    })
+
+    const savedNote = await newNote.save()
+    user.notes = [...user.notes, savedNote._id] // user.notes.concat(savedNote._id)
+    await user.save()
+    res.status(201).json(savedNote)
+  } catch (error) {
     next(error)
   }
 })

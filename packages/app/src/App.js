@@ -1,97 +1,117 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Header, Button } from 'semantic-ui-react'
-import Notification from './components/Notification'
-import noteService from './services/notes'
-import LoginForm from './components/LoginForm.js'
-import NoteForm from './components/NoteForm.js'
-import NotesList from './components/NotesList'
+import { ChakraProvider, ScaleFade, Flex, Box } from '@chakra-ui/react'
+import NavBar from '@Components/Navbar'
+import Footer from '@Components/Footer'
+import Sign from '@Components/Sign'
+import Notes from '@Components/Notes'
+import NotFound from '@Components/NotFound'
+import noteService from '@Services/notes'
+import userService from '@Services/users'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { RequireNoAuth } from '@Utils/routing'
+import theme from '@Theme'
+import { AnimatePresence } from 'framer-motion'
 
 const App = () => {
-  const [notes, setNotes] = useState([])
-  const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState(null)
   const [user, setUser] = useState(null)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
 
-  useEffect(() => {
-    noteService.getAll().then(initialNotes => {
-      setNotes(initialNotes)
-    })
-  }, [])
+  const navigate = useNavigate()
 
-  useEffect(() => {
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+  const handleSign = async ({ user, error }) => {
+    if (error) {
+      return console.log(error)
+    }
+
+    await sleep(500)
+    setUser(user)
+    setAuthenticated(true)
+    window.localStorage.setItem('AppNoteUser', JSON.stringify(user))
+    navigate('/')
+  }
+
+  const validateUser = async id => {
+    const response = await userService.validate(id)
+    const isValid = response?.valid === true
+    if (!isValid) {
+      setUser(null)
+      setAuthenticated(false)
+      noteService.setToken(null)
+      window.localStorage.removeItem('AppNoteUser')
+      window.localStorage.removeItem('AppNoteNotes')
+    }
+  }
+
+  useEffect(async () => {
     const loggedUserJSON = window.localStorage.getItem('AppNoteUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
-      if (user) noteService.setToken(user.token)
+      setAuthenticated(true)
+      noteService.setToken(user.token)
+      await validateUser(user.id)
     }
-  }, []) // empty array means that this effect will only run once
+  }, [])
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    setIsLoggingOut(true)
+    await sleep(500)
     setUser(null)
+    setAuthenticated(false)
     noteService.setToken(null)
     window.localStorage.removeItem('AppNoteUser')
-  }
-
-  const addNote = async noteObject => {
-    await noteService.create(noteObject).then(returnedNote => {
-      setNotes(notes.concat(returnedNote))
-    })
-  }
-
-  const handleLogin = ({ user, error }) => {
-    setUser(user)
-    window.localStorage.setItem('AppNoteUser', JSON.stringify(user))
-    if (error) {
-      setErrorMessage(error)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
-  }
-
-  let notesToShow = []
-  if (!user) notesToShow = []
-  else {
-    notesToShow = notes.filter(
-      note => note.user.id === user.id || note.user === user.id
-    )
-    notesToShow = showAll
-      ? notesToShow
-      : notesToShow.filter(note => note.important)
+    window.localStorage.removeItem('AppNoteNotes')
+    setIsLoggingOut(false)
+    navigate('/')
   }
 
   return (
-    <Container style={{ width: '40%', paddingTop: '5%' }}>
-      <Header content='Notes' />
+    <ChakraProvider theme={theme}>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <ScaleFade initialScale={0.9} in='true'>
+          <Box className='app'>
 
-      {!errorMessage ? null : <Notification message={errorMessage} />}
+            <NavBar
+              handleLogout={handleLogout}
+              user={user}
+              isLoggingOut={isLoggingOut}
+            />
 
-      {user
-        ? (
-          <>
-            <Button fluid color='orange' onClick={handleLogout} content='Logout' />
-            <NoteForm addNote={addNote} />
-          </>
-          )
-        : <LoginForm
-            handleSubmit={handleLogin}
-          />}
+            <Box className='app__body'>
+              <Flex
+                w='100%'
+                paddingLeft={8}
+                flexDirection='column'
+                alignItems='center'
+              >
+                <Routes>
+                  <Route
+                    path='/'
+                    element={<Notes user={user} handleLogout={handleLogout} />}
+                  />
+                  <Route element={<RequireNoAuth isAuthenticated={authenticated} />}>
+                    <Route
+                      path='/login'
+                      element={ <Sign handleSubmit={handleSign} /> }
+                    />
+                    <Route
+                      path='/register'
+                      element={ <Sign handleSubmit={handleSign} /> }
+                    />
+                  </Route>
+                  <Route path='*' element={<NotFound />} />
+                </Routes>
+              </Flex>
+            </Box>
 
-      <div>
-        <Button fluid color='brown' onClick={() => setShowAll(!showAll)}>
-          Show {showAll ? 'important notes only' : 'all notes'}
-        </Button>
-      </div>
-
-      <NotesList
-        notes={notesToShow}
-        user={user}
-        handleUpdateNotes={setNotes}
-        handleErrorMesage={setErrorMessage}
-      />
-
-    </Container>
+            <Footer />
+          </Box>
+        </ScaleFade>
+      </AnimatePresence>
+    </ChakraProvider>
   )
 }
 

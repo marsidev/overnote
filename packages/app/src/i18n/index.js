@@ -1,5 +1,5 @@
 export default {
-  TOGGABLE: {
+  TOGGLABLE: {
     CANCEL_BUTTON: 'Close form'
   }
 }

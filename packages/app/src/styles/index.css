@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* @import url('http://localhost:8888/static/fonts/rubik.woff2'); */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
+  font-family: Rubik, 'Open Sans', Roboto, Rubik, Arial, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  /* axie zone: */
+  /* background:linear-gradient(-45deg, #ffafff, #32a0ff);
+    background-attachment:fixed; */
+}
+
+:root {
+  --scrollbar-track-bg: #ffffff;
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.24);
+  --scrollbar-thumb_hover-bg: #718096;
+  --placeholder-color: rgba(0, 0, 0, 0.62);
+}
+
+/* .app { } */
+
+.app__body {
+  min-height: calc(100vh - 7.5rem);
+  /* 8rem = (header + footer) height */
+}
+
+/* .app__navbar { } */
+
+.app__footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../../api/public/fonts/rubik.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* https://ishadeed.com/article/custom-scrollbars-css/ */
+/* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+/* https://css-tricks.com/almanac/properties/s/scrollbar/ */
+
+::-webkit-scrollbar {
+  width: .5em;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+  border-radius: 1em;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+  background: var(--scrollbar-thumb-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb_hover-bg);
+}
+
+::-webkit-input-placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+::-moz-placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+:-ms-input-placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+::-ms-input-placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+::placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+:-moz-placeholder {
+  color: var(--placeholder-color) !important;
+}

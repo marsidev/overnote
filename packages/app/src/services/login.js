@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const API_URL = process.env.REACT_APP_API_URL
-// const API_URL = process.env.REACT_APP_API_URL_LOCAL
+// const herokuBaseUrl = 'https://young-dawn-98726.herokuapp.com'
+// const baseUrl = `${herokuBaseUrl}/api/login`
 const baseUrl = '/api/login'
 
 const login = async credentials => {

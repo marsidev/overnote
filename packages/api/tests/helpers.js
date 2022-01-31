@@ -5,15 +5,15 @@ const api = supertest(app)
 const initialNotes = [
   {
     content: 'HTML is easy',
-    important: true
+    pinned: true
   },
   {
     content: 'Browser can execute only Javascript',
-    important: false
+    pinned: false
   },
   {
     content: 'Node.js is a platform on which Javascript runs',
-    important: true
+    pinned: true
   }
 ]
 

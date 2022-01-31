@@ -1,22 +1,31 @@
 const { Schema, model } = require('mongoose')
 
 const noteSchema = new Schema({
+  title: String,
   content: String,
-  date: Date,
-  important: Boolean,
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    unique: false
+  pinned: Boolean,
+  createdBy: {
+    type: String,
+    ref: 'User'
+  },
+  backgroundColor: String,
+  _id: { type: String, required: true }
+}, {
+  timestamps: true,
+  toJSON: {
+    transform: (obj, ret) => {
+      ret.id = ret._id
+      delete ret._id
+      delete ret.__v
+    }
   }
 })
 
-noteSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
+noteSchema.virtual('user', {
+  ref: 'User',
+  localField: 'createdBy',
+  foreignField: 'id',
+  justOne: true
 })
 
 const Note = model('Note', noteSchema)

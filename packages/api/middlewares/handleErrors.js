@@ -8,13 +8,10 @@ const ERROR_HANDLERS = {
   JsonWebTokenError: (res) =>
     res.status(401).json({ error: 'token missing or invalid' }),
 
-  TokenExpirerError: res =>
+  TokenExpiredError: res =>
     res.status(401).json({ error: 'token expired' }),
 
   MongoServerError: (res, error) => {
-    // console.error(error.name)
-    // console.error(error.code)
-    // console.error(error)
     if (error.code === 11000) {
       return res.status(409).send({ error: 'username already exists' })
     } else {

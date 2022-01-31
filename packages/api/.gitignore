@@ -1,2 +1,8 @@
 node_modules
 .env
+requests
+/requests
+tests
+/tests
+.yarn
+yarn-error.log

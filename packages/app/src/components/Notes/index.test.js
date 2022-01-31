@@ -1,18 +1,18 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { fireEvent, render } from '@testing-library/react'
-import Note from './Note'
+import Note from '@Notes/NoteDetail'
 
 test.skip('renders content', () => {
   const note = {
     content: 'This is a test',
-    important: true
+    pinned: true
   }
 
   const component = render(<Note note={note} />)
 
   component.getByText(note.content)
-  // component.getByText(note.important) // this can't be tested without authentication
+  // component.getByText(note.pinned) // this can't be tested without authentication
   expect(component.container).toHaveTextContent(note.content)
 
   // const li = component.container.querySelector('li')
@@ -24,7 +24,7 @@ test.skip('renders content', () => {
 test.skip('clicking the button calls event handler once', () => {
   const note = {
     content: 'This is a test',
-    important: true
+    pinned: true
   }
 
   const mockHandler = jest.fn()

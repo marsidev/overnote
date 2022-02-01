@@ -24,13 +24,13 @@ const SocialButton = ({ children, href }) => {
   )
 }
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.800')}
       color={useColorModeValue('gray.700', 'gray.200')}
-      className='app__footer'
       shadow={'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'}
+      {...props}
     >
       <Container
         as={Stack}

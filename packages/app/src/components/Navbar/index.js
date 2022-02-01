@@ -5,14 +5,15 @@ import Brand from '@Components/Navbar/Brand'
 import NavbarContainer from '@Components/Navbar/NavbarContainer'
 import NavbarItems from '@Components/Navbar/NavbarItems'
 
-const NavBar = ({ ...props }) => {
+const NavBar = (props) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [isOpen, setIsOpen] = useState(false)
   useCssProps(colorMode)
   const toggleNavbar = () => setIsOpen(!isOpen)
+  const { className } = props
 
   return (
-    <NavbarContainer colorMode={colorMode}>
+    <NavbarContainer colorMode={colorMode} className={className}>
       {isOpen ? null : <Brand w='100px' />}
       <NavbarItems
         toggleNavbar={toggleNavbar}

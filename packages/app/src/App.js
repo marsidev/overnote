@@ -73,33 +73,30 @@ const App = () => {
       <AnimatePresence exitBeforeEnter initial={false}>
         <ScaleFade initialScale={0.9} in='true'>
           <Box className='app'>
-
             <NavBar
               handleLogout={handleLogout}
               user={user}
               isLoggingOut={isLoggingOut}
+              className='app__navbar'
             />
 
             <Box className='app__body'>
-              <Flex
-                w='100%'
-                paddingLeft={8}
-                flexDirection='column'
-                alignItems='center'
-              >
+              <Flex w='100%' flexDirection='column' alignItems='center'>
                 <Routes>
                   <Route
                     path='/'
                     element={<Notes user={user} handleLogout={handleLogout} />}
                   />
-                  <Route element={<RequireNoAuth isAuthenticated={authenticated} />}>
+                  <Route
+                    element={<RequireNoAuth isAuthenticated={authenticated} />}
+                  >
                     <Route
                       path='/login'
-                      element={ <Sign handleSubmit={handleSign} /> }
+                      element={<Sign handleSubmit={handleSign} />}
                     />
                     <Route
                       path='/register'
-                      element={ <Sign handleSubmit={handleSign} /> }
+                      element={<Sign handleSubmit={handleSign} />}
                     />
                   </Route>
                   <Route path='*' element={<NotFound />} />
@@ -107,7 +104,7 @@ const App = () => {
               </Flex>
             </Box>
 
-            <Footer />
+            <Footer className='app__footer' />
           </Box>
         </ScaleFade>
       </AnimatePresence>

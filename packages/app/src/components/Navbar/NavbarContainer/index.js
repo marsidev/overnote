@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Flex } from '@chakra-ui/react'
 
-const NavbarContainer = ({ children, colorMode }) => {
+const NavbarContainer = ({ children, colorMode, className }) => {
   const bgColor = colorMode === 'light' ? 'white' : 'gray.800'
 
   return (
@@ -14,7 +14,7 @@ const NavbarContainer = ({ children, colorMode }) => {
       w='100%'
       zIndex={3}
       boxShadow={'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'}
-      className='app__navbar'
+      className={className}
     >
       <Flex
         align='center'

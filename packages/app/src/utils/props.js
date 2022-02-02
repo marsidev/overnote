@@ -32,15 +32,16 @@ export const AddNoteFormProps = () => {
     p: 4,
     overflow: 'hidden',
     position: 'relative',
-    align: 'left'
+    align: 'left',
+    boxShadow: 'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
   }
 
   const formContainerProps = {
     borderRadius: 8,
     fontSize: '1rem',
     lineHeight: '1.5rem',
-    letterSpacing: '.00625em'
-    // mb: 2
+    letterSpacing: '.00625em',
+    boxShadow: 'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
   }
 
   const contentInputPropsWhenFormClosed = {

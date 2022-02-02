@@ -2,7 +2,7 @@ export const appColors = {
   border: {
     default: {
       light: '#e0e0e0',
-      dark: '#5f6368'
+      dark: 'rgba(255, 255, 255, 0.08)'
     }
   },
   backgroundColor: {

@@ -46,7 +46,7 @@ const MobileNavbar = (props) => {
       variant='float'
       showLabel='never'
       className={`${className}__mobile`}
-      boxShadow={'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'}
+      boxShadow={'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'}
       {...rest}
     >
       <MotionItem onClick={toggleColorMode} {...navItemsProps}>

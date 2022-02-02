@@ -34,7 +34,7 @@ const Footer = (props) => {
     <Box
       bg={useColorModeValue('white', 'gray.800')}
       color={useColorModeValue('gray.700', 'gray.200')}
-      shadow={'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'}
+      shadow={'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'}
       mb={mobile ? '3rem' : null}
       mt={mobile ? '1rem' : '-2rem'}
       {...props}

@@ -113,20 +113,14 @@ const AddNoteForm = ({ addNote }) => {
   const placeholderColor = useColorModeValue('rgba(0,0,0,0.6)', 'rgba(255,255,255,0.6)')
   const contentColor = useColorModeValue('#202124', '#e8eaed')
 
-  const themedboxShadow = useColorModeValue(
-    'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-    'rgba(255, 255, 255, 0.12) 0px 4px 12px, rgba(255, 255, 255, 0.10) 0px 4px 4px'
-  )
-
   const _containerProps = addProps(containerProps, {
     border: isFormVisible ? `1px solid ${themedBorderColor}` : 'none',
-    boxShadow: isFormVisible ? themedboxShadow : 'none',
+    boxShadow: !isFormVisible ? 'none' : containerProps.boxShadow,
     bg: isFormVisible ? bgColors[pickedBgColor][currentTheme] : 'none'
   })
 
   const _formContainerProps = addProps(formContainerProps, {
-    border: !isFormVisible ? `1px solid ${themedBorderColor}` : 'none',
-    boxShadow: themedboxShadow
+    border: !isFormVisible ? `1px solid ${themedBorderColor}` : 'none'
   })
 
   const contentFontWeight = newNoteContent ? '400' : '700'

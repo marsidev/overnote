@@ -63,8 +63,8 @@ const SignForm = (props) => {
       >
         <Box
           p={8}
-          maxWidth='540px'
-          w={['380px', '460px', '500px', '540px']}
+          maxWidth='520px'
+          w={['360px', '440px', '480px', '520px']}
           borderWidth={1}
           borderRadius={8}
           boxShadow={boxShadow}

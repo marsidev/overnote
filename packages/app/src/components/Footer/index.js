@@ -3,7 +3,7 @@ import { Box, IconButton, Container, Stack, useColorModeValue } from '@chakra-ui
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 import { isMobile } from '@Components/DeviceDetect'
 
-const TWITTER_URL = 'https://twitter.com/masigliacr'
+const TWITTER_URL = 'https://twitter.com/marsigliacr'
 const GITHUB_URL = 'https://github.com/marsigliadev/notes-app-monorepo'
 
 const SocialButton = ({ children, href, mobile }) => {

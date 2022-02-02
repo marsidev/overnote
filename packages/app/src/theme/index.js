@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
+import { BottomNavigationStyleConfig as BottomNavigation } from 'chakra-ui-bottom-navigation'
 
 const components = {
   Button: {
@@ -13,7 +14,8 @@ const components = {
         boxShadow: '0 0 2px 2px #efdfde'
       }
     }
-  }
+  },
+  BottomNavigation
 }
 
 const theme = extendTheme({

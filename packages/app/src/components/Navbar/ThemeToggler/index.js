@@ -4,7 +4,7 @@ import { FaSun, FaMoon } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 const ThemeToggler = props => {
-  const { colorMode, isOpen, ...rest } = props
+  const { colorMode, ...rest } = props
 
   const MotionButton = motion(Button)
   const variants = {
@@ -21,7 +21,7 @@ const ThemeToggler = props => {
       whileHover='hover'
       variant='ghost'
       p={0}
-      size={isOpen ? 'sm' : 'md'}
+      size={'md'}
       {...rest}
     >
       {colorMode === 'light' ? <FaMoon /> : <FaSun />}

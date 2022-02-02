@@ -27,11 +27,29 @@
 /* .app { } */
 
 .app__body {
-  min-height: calc(100vh - 7.5rem);
-  /* 8rem = (header + footer) height */
+  min-height: calc(100vh - 6rem);
 }
 
-/* .app__navbar { } */
+.app__navbar {
+  z-index: 3;
+  margin: auto;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: sticky;
+}
+
+.app__navbar__mobile {
+  position: sticky;
+  border-radius: 0;
+  margin: auto;
+  width: 100%;
+  z-index: 3;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 3rem;
+  /* box-shadow: rgba(136, 153, 166, 20%) 0px 2px 15px 0px !important; */
+}
 
 .app__footer {
   position: relative;

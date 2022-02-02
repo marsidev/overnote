@@ -19,7 +19,7 @@ const NotesSegment = (props) => {
   if (notesToShow.length === 0) return null
 
   return (
-    <Box px={[0, 2, 3, 4]} py={4}>
+    <Box px={[0, 2, 3, 4]} pt={4} pb={10}>
       <Flex
         alignItems='center'
         justifyContent='center'

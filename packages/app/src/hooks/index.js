@@ -4,6 +4,7 @@ import { useOutsideHandler } from './useOutsideAlerter'
 import { useCtrlEnterDetecter } from './useCtrlEnterDetecter'
 import { useEnterKeyDetecter } from './useEnterKeyDetecter'
 import { useCssProps } from './useCssProps'
+import { useMobileDetect } from './useMobileDetect'
 
 export {
   useFocus,
@@ -11,5 +12,6 @@ export {
   useOutsideHandler,
   useCtrlEnterDetecter,
   useEnterKeyDetecter,
-  useCssProps
+  useCssProps,
+  useMobileDetect
 }

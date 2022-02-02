@@ -6,13 +6,7 @@ const NavbarContainer = ({ children, colorMode, className }) => {
 
   return (
     <Box
-      as='header'
-      pos='sticky'
-      top={0}
-      left={0}
-      margin='auto'
-      w='100%'
-      zIndex={3}
+      as='nav'
       boxShadow={'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'}
       className={className}
     >

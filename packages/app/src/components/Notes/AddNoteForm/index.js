@@ -89,6 +89,8 @@ const AddNoteForm = ({ addNote }) => {
         setNewPinnedStatus(false)
         genToast({ toast, status: 'success', description: 'Note added!' })
         await addNote(noteObject)
+      } else {
+        setIsFormVisible(false)
       }
     } else {
       setIsFormVisible(false)

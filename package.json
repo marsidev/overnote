@@ -1,6 +1,9 @@
 {
   "private": true,
-  "author": "Luis Marsiglia",
+  "author": {
+    "name": "Luis Marsiglia",
+    "email": "marsiglia.business@gmail.com"
+  },
   "name": "@notes-app/monorepo",
   "version": "1.0.0",
   "description": "",
@@ -27,7 +30,13 @@
     "setvar": "heroku config:set",
     "getvar": "heroku config:get"
   },
-  "keywords": [],
+  "keywords": [
+    "notes",
+    "todo",
+    "keep",
+    "google keep",
+    "monorepo"
+  ],
   "license": "ISC",
   "devDependencies": {
     "eslint": "7.32.0",

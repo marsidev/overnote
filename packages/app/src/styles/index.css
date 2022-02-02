@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-/* @import url('http://localhost:8888/static/fonts/rubik.woff2'); */
 
 * {
   margin: 0;
@@ -11,8 +10,7 @@
   vertical-align: baseline;
   background: transparent;
   box-sizing: border-box;
-  font-family: Rubik, 'Open Sans', Roboto, Rubik, Arial, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  /* axie zone: */
+  font-family: 'Open Sans', Roboto, Rubik, Arial, Menlo, Monaco, Consolas, 'Courier New', monospace;
   /* background:linear-gradient(-45deg, #ffafff, #32a0ff);
     background-attachment:fixed; */
 }

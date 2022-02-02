@@ -1,20 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Box, Heading, FormControl, FormLabel, Input, Button, useColorModeValue, Text } from '@chakra-ui/react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { isMobile } from '@Components/DeviceDetect'
 
 const SignForm = (props) => {
+  const { handleSign, isLoading, headingText, error, setError } = props
+
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [pageCount, setPageCount] = useState(0)
+  const mobile = isMobile()
 
-  const { handleSign, isLoading, headingText, error, setError } = props
-
-  const boxShadow = useColorModeValue(
-    'lg',
-    'rgba(136, 153, 166, 20%) 0px 2px 15px 0px'
-  )
+  const boxShadow = useColorModeValue('lg', 'rgba(136, 153, 166, 20%) 0px 2px 15px 0px')
   const pathName = useLocation().pathname
 
   const handleSubmit = async event => {
@@ -30,7 +30,6 @@ const SignForm = (props) => {
 
   const MotionButton = motion(Button)
 
-  // detect if path changes
   useEffect(() => {
     setName('')
     setUsername('')
@@ -49,7 +48,13 @@ const SignForm = (props) => {
   }
 
   return (
-    <>
+    <Box
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      flexDirection='column'
+      h='68vh'
+    >
       <motion.div
         variants={variants}
         initial='entering'
@@ -58,12 +63,11 @@ const SignForm = (props) => {
       >
         <Box
           p={8}
-          maxWidth='600px'
-          w={['300px', '400px', '500px', '600px']}
+          maxWidth='540px'
+          w={['380px', '460px', '500px', '540px']}
           borderWidth={1}
           borderRadius={8}
           boxShadow={boxShadow}
-          transition='200ms'
         >
           <Box textAlign='center'>
             <Heading>{headingText}</Heading>
@@ -148,7 +152,7 @@ const SignForm = (props) => {
           </Box>
         </Box>
       </motion.div>
-    </>
+    </Box>
   )
 }
 

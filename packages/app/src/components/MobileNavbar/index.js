@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { FaHome, FaSun, FaMoon, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
 import {

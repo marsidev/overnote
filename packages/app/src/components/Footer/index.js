@@ -1,6 +1,5 @@
-/* eslint no-unused-vars: 0 */
 import React from 'react'
-import { Box, IconButton, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, IconButton, Container, Stack, useColorModeValue } from '@chakra-ui/react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 import { isMobile } from '@Components/DeviceDetect'
 

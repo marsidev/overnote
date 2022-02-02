@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Box, Heading, FormControl, FormLabel, Input, Button, useColorModeValue, Text } from '@chakra-ui/react'
 import { useLocation, Link } from 'react-router-dom'

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { Input, Box, useColorModeValue, useToast } from '@chakra-ui/react'
 import { useFocus, useOutsideHandler, useCtrlEnterDetecter, useEnterKeyDetecter } from '@Hooks'
 import genToast from '@Components/Toast'
@@ -9,7 +8,6 @@ import { addProps, readColorPicked } from '@Utils/funcs'
 import { appColors } from '@Utils/theming'
 import { AddNoteFormProps } from '@Utils/props'
 import { checkConnection } from '@Utils/connection'
-// import { motion, useAnimation } from 'framer-motion'
 
 const {
   containerProps,

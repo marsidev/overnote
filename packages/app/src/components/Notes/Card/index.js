@@ -119,10 +119,7 @@ const Card = ({ note, deleteNote, updateNote, openNoteDetail }) => {
   }
 
   // variable props
-  const noteBoxShadow = useColorModeValue(
-    'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-    'rgba(255, 255, 255, 0.12) 0px 4px 12px, rgba(255, 255, 255, 0.10) 0px 4px 4px'
-  )
+  const noteBoxShadow = 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px'
 
   const noteBorderColor = note.backgroundColor === 'default'
     ? borderColors.default[currentTheme]

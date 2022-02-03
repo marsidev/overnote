@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Flex, Text, Divider, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, useDisclosure, IconButton, useColorModeValue } from '@chakra-ui/react'
 import noteService from '@Services/notes'
 import Card from '@Notes/Card'
 import AddNoteForm from '@Notes/AddNoteForm'
@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { sortNotes } from '@Utils/funcs'
 import NoteDetail from '@Notes/NoteDetail'
 import { motion } from 'framer-motion'
+import { isMobile } from '@Components/DeviceDetect'
+import { FaPlus } from 'react-icons/fa'
 
 const NotesSegment = (props) => {
   const { title, notes, setSelectedId, deleteNote, updateNote, openNoteDetail } = props
@@ -65,6 +67,7 @@ const NotesSegment = (props) => {
 
 const Notes = (props) => {
   const { user, notes, setNotes, handleLogout } = props
+  const mobile = isMobile()
 
   const [selectedId, setSelectedId] = useState(null)
   const {
@@ -166,7 +169,13 @@ const Notes = (props) => {
     }
   }, [user])
 
-  const variants = {
+  const MotionButton = motion(IconButton)
+  const buttonVariants = {
+    initial: { scale: 1 },
+    tap: { scale: 0.9, transition: { duration: 0.1, ease: 'easeOut' } }
+  }
+
+  const containerVariants = {
     entering: {
       scale: 0.8, opacity: 0, width: '25%'
     },
@@ -177,7 +186,7 @@ const Notes = (props) => {
 
   return (
     <motion.div
-      variants={variants}
+      variants={containerVariants}
       initial='entering'
       animate='entered'
     >
@@ -201,6 +210,27 @@ const Notes = (props) => {
           updateNote={updateNote}
           openNoteDetail={openNoteDetail}
         />
+
+        {mobile && (
+          <MotionButton
+            aria-label='Add note'
+            variants={buttonVariants}
+            initial='initial'
+            whileTap='tap'
+            variant='solid'
+            colorScheme={useColorModeValue('blue', 'gray')}
+            borderRadius='full'
+            border='none'
+            zIndex={4}
+            size='lg'
+            pos='fixed'
+            bottom='15%'
+            right='4%'
+            fontSize='20px'
+            boxShadow='rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
+            icon={<FaPlus />}
+          />
+        )}
       </Box>
 
       {selectedId && (

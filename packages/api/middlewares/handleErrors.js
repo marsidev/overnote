@@ -19,6 +19,14 @@ const ERROR_HANDLERS = {
     }
   },
 
+  MongooseError: (res, error) => {
+    if (error.name.includes('timed out')) {
+      return res.status(409).send({ error: 'connection error' })
+    } else {
+      res.status(500).json({ error: 'mongoose server error' })
+    }
+  },
+
   defaultError: (res, error) => {
     console.log({
       error: error.message,

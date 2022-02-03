@@ -58,7 +58,7 @@ const App = () => {
 
   const handleLogout = async () => {
     setIsLoggingOut(true)
-    await sleep(500)
+    await sleep(1500) // <-- not needed
     setUser(null)
     setAuthenticated(false)
     noteService.setToken(null)

@@ -105,7 +105,6 @@ export const AddNoteFormProps = () => {
 export const CardProps = () => {
   const noteCardProps = {
     p: [3, 3, 4, 4],
-    // maxWidth: '240px',
     width: ['100%', '160px', '200px', '240px'],
     // h: ['100px', '150px', '200px', '250px'],
     border: '1px solid',
@@ -115,7 +114,8 @@ export const CardProps = () => {
     overflow: 'hidden',
     position: 'relative',
     align: 'left',
-    whiteSpace: 'pre-line'
+    whiteSpace: 'pre-line',
+    boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px'
   }
 
   const noteTitleProps = {

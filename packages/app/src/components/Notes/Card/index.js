@@ -118,29 +118,21 @@ const Card = ({ note, deleteNote, updateNote, openNoteDetail }) => {
     await handleUpdate(noteObject)
   }
 
-  // variable props
-  const noteBoxShadow = 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px'
-
   const noteBorderColor = note.backgroundColor === 'default'
     ? borderColors.default[currentTheme]
     : bgColors[note.backgroundColor][currentTheme]
 
-  const iconsHoverBgColor = useColorModeValue(
-    'rgba(95, 99, 104, 0.157)',
-    'rgba(154, 160, 166, 0.457)'
-  )
-  const themedFontColor = useColorModeValue('#202124', '#e8eaed')
-
-  // updating noteCardProps object
   const _noteCardProps = addProps(noteCardProps, {
     borderColor: noteBorderColor,
-    boxShadow: noteBoxShadow,
-    color: themedFontColor,
+    color: useColorModeValue('#202124', '#e8eaed'),
     bgColor: bgColors[note.backgroundColor][currentTheme]
   })
 
   const _noteIconProps = addProps(noteIconProps, {
-    _hover: { ...noteIconProps._hover, bg: iconsHoverBgColor }
+    _hover: {
+      ...noteIconProps._hover,
+      bg: useColorModeValue('rgba(95, 99, 104, 0.157)', 'rgba(154, 160, 166, 0.457)')
+    }
   })
 
   return (

@@ -6,6 +6,7 @@ import AddNoteForm from '@Notes/AddNoteForm'
 import { v4 as uuidv4 } from 'uuid'
 import { sortNotes } from '@Utils/funcs'
 import NoteDetail from '@Notes/NoteDetail'
+import { motion } from 'framer-motion'
 
 const NotesSegment = (props) => {
   const { title, notes, setSelectedId, deleteNote, updateNote, openNoteDetail } = props
@@ -165,9 +166,22 @@ const Notes = (props) => {
     }
   }, [user])
 
+  const variants = {
+    entering: {
+      scale: 0.8, opacity: 0, width: '25%'
+    },
+    entered: {
+      scale: 1, opacity: 1, width: '90%', transition: { duration: 0.2, ease: 'easeOut' }
+    }
+  }
+
   return (
-    <>
-      <Box w='95%' justify='center' align='center' mt={4}>
+    <motion.div
+      variants={variants}
+      initial='entering'
+      animate='entered'
+    >
+      <Box justify='center' align='center' mt={4}>
         <AddNoteForm addNote={addNote} />
 
         <NotesSegment
@@ -198,7 +212,7 @@ const Notes = (props) => {
           setSelectedId={setSelectedId}
         />
       )}
-    </>
+    </motion.div>
   )
 }
 

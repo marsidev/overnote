@@ -44,25 +44,6 @@ export const AddNoteFormProps = () => {
     boxShadow: 'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
   }
 
-  const contentInputPropsWhenFormClosed = {
-    type: 'text',
-    placeholder: 'Take a note...',
-    maxRows: 2,
-    rows: 1,
-    style: {
-      fontWeight: '700',
-      fontFamily: '"Open Sans", Roboto, Helvetica, Arial, sans-serif',
-      fontSize: '1rem',
-      lineHeight: '1.5rem',
-      letterSpacing: '.00625em',
-      paddingTop: 8,
-      paddingBottom: 2,
-      paddingLeft: 12,
-      resize: 'none',
-      width: '100%'
-    }
-  }
-
   const titleInputProps = {
     type: 'text',
     placeholder: 'Title',
@@ -80,12 +61,29 @@ export const AddNoteFormProps = () => {
     placeholder: 'Take a note...',
     maxRows: 26,
     style: {
-      fontWeight: 400,
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
       fontSize: '.875rem',
       lineHeight: '1.25rem',
       letterSpacing: '.01428571em',
       marginBottom: 5,
+      resize: 'none',
+      width: '100%'
+    }
+  }
+
+  const contentInputPropsWhenFormClosed = {
+    type: 'text',
+    placeholder: 'Take a note...',
+    maxRows: 2,
+    rows: 1,
+    style: {
+      fontFamily: '"Open Sans", Roboto, Helvetica, Arial, sans-serif',
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+      letterSpacing: '.00625em',
+      paddingTop: 8,
+      paddingBottom: 2,
+      paddingLeft: 12,
       resize: 'none',
       width: '100%'
     }

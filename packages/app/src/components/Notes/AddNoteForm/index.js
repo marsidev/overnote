@@ -4,7 +4,7 @@ import { useFocus, useOutsideHandler, useCtrlEnterDetecter, useEnterKeyDetecter 
 import genToast from '@Components/Toast'
 import IconsGroup from '@Notes/AddNoteForm/IconsGroup'
 import TextareaAutosize from 'react-autosize-textarea'
-import { addProps, readColorPicked } from '@Utils/funcs'
+import { readColorPicked } from '@Utils/funcs'
 import { appColors } from '@Utils/theming'
 import { AddNoteFormProps } from '@Utils/props'
 import { checkConnection } from '@Utils/connection'
@@ -53,7 +53,6 @@ const AddNoteForm = ({ addNote }) => {
   const enterPressedHandler = event => {
     if (document.activeElement === titleRef.current) {
       event.preventDefault()
-      console.log('titleRef is focused')
       setNoteInputFocus()
     }
   }
@@ -106,41 +105,29 @@ const AddNoteForm = ({ addNote }) => {
     setNewPinnedStatus(!newPinnedStatus)
   }
 
-  const themedBorderColor = pickedBgColor === 'default'
-    ? borderColors.default[currentTheme]
-    : bgColors[pickedBgColor][currentTheme]
+  const themeBorder = `1px solid 
+    ${pickedBgColor === 'default' ? borderColors.default[currentTheme] : bgColors[pickedBgColor][currentTheme]}`
 
   const placeholderColor = useColorModeValue('rgba(0,0,0,0.6)', 'rgba(255,255,255,0.6)')
   const contentColor = useColorModeValue('#202124', '#e8eaed')
 
-  const _containerProps = addProps(containerProps, {
-    border: isFormVisible ? `1px solid ${themedBorderColor}` : 'none',
-    boxShadow: !isFormVisible ? 'none' : containerProps.boxShadow,
-    bg: isFormVisible ? bgColors[pickedBgColor][currentTheme] : 'none'
-  })
-
-  const _formContainerProps = addProps(formContainerProps, {
-    border: !isFormVisible ? `1px solid ${themedBorderColor}` : 'none'
-  })
-
-  const contentFontWeight = newNoteContent ? '400' : '700'
-
-  const _contentInputProps = addProps(contentInputProps, {
-    style: {
-      ...contentInputProps.style,
-      fontWeight: contentFontWeight
-    }
-  })
+  const contentProps = isFormVisible
+    ? contentInputProps
+    : contentInputPropsWhenFormClosed
 
   return (
-    <Box
-      width={['90%', '70%%', '50%', '35%']}
-      mb={[2, 4, 8, 10]}
-    >
-      <Box ref={boxRef} {..._containerProps}>
+    <Box width={['90%', '70%%', '50%', '35%']} mb={[2, 4, 8, 10]}>
+      <Box
+        ref={boxRef}
+        {...containerProps}
+        border={isFormVisible && themeBorder}
+        boxShadow={isFormVisible && containerProps.boxShadow}
+        bg={isFormVisible && bgColors[pickedBgColor][currentTheme]}
+      >
         <Box
-          onFocus={isFormVisible ? null : showMainForm}
-          {...(!isFormVisible && _formContainerProps)}
+          onFocus={!isFormVisible ? showMainForm : null}
+          border={!isFormVisible && themeBorder}
+          {...(!isFormVisible && formContainerProps)}
         >
           <form onSubmit={handleSubmit}>
             {isFormVisible && (
@@ -158,9 +145,11 @@ const AddNoteForm = ({ addNote }) => {
               value={newNoteContent}
               onChange={event => setNewNoteContent(event.target.value)}
               color={newNoteContent ? contentColor : placeholderColor}
-              {...(!isFormVisible
-                ? contentInputPropsWhenFormClosed
-                : _contentInputProps)}
+              {...contentProps}
+              style={{
+                ...contentProps.style,
+                fontWeight: newNoteContent ? '400' : '700'
+              }}
             />
 
             {isFormVisible && (

@@ -81,12 +81,12 @@ const Notes = ({ ...props }) => {
   }
 
   const injectNote = noteToInject => {
+    if (!noteToInject) return
     const localNotes = JSON.parse(localStorage.getItem('AppNoteNotes'))
     const updatedLocalNotes = localNotes.map(note => {
       if (note.id === noteToInject.id) return noteToInject
       return note
     })
-    localStorage.setItem('AppNoteNotes', JSON.stringify(updatedLocalNotes))
     updateNotesLocally(updatedLocalNotes)
   }
 
@@ -163,6 +163,7 @@ const Notes = ({ ...props }) => {
   useEffect(() => {
     if (user) {
       const notes = window.localStorage.getItem('AppNoteNotes')
+      console.log({ AppNoteNotes: notes })
       if (notes) setNotes(JSON.parse(notes)) // set notes from local storage while we fetch them from server
       fetchNotes()
       // .then((n) => console.log('Notes fetched', n))

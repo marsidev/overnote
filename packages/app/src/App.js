@@ -14,6 +14,7 @@ import { AnimatePresence } from 'framer-motion'
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [notes, setNotes] = useState([])
   const [isLoggingOut, setIsLoggingOut] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
 
@@ -46,9 +47,13 @@ const App = () => {
   }
 
   useEffect(async () => {
-    const loggedUserJSON = window.localStorage.getItem('AppNoteUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
+    const localUser = window.localStorage.getItem('AppNoteUser')
+    const localNotes = window.localStorage.getItem('AppNoteNotes')
+
+    if (localNotes) setNotes(JSON.parse(localNotes))
+
+    if (localUser) {
+      const user = JSON.parse(localUser)
       setUser(user)
       setAuthenticated(true)
       noteService.setToken(user.token)
@@ -85,7 +90,14 @@ const App = () => {
                 <Routes>
                   <Route
                     path='/'
-                    element={<Notes user={user} handleLogout={handleLogout} />}
+                    element={
+                      <Notes
+                        user={user}
+                        notes={notes}
+                        setNotes={setNotes}
+                        handleLogout={handleLogout}
+                      />
+                    }
                   />
                   <Route
                     element={<RequireNoAuth isAuthenticated={authenticated} />}

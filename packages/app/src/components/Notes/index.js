@@ -62,9 +62,8 @@ const NotesSegment = (props) => {
   )
 }
 
-const Notes = ({ ...props }) => {
-  const { user, handleLogout } = props
-  const [notes, setNotes] = useState([])
+const Notes = (props) => {
+  const { user, notes, setNotes, handleLogout } = props
 
   const [selectedId, setSelectedId] = useState(null)
   const {
@@ -162,13 +161,7 @@ const Notes = ({ ...props }) => {
 
   useEffect(() => {
     if (user) {
-      const notes = window.localStorage.getItem('AppNoteNotes')
-      console.log({ AppNoteNotes: notes })
-      if (notes) setNotes(JSON.parse(notes)) // set notes from local storage while we fetch them from server
-      fetchNotes()
-      // .then((n) => console.log('Notes fetched', n))
-    } else {
-      updateNotesLocally([])
+      fetchNotes().then(n => console.log('Notes fetched'))
     }
   }, [user])
 

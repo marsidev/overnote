@@ -39,6 +39,7 @@ const App = () => {
     const isValid = response?.valid === true
     if (!isValid) {
       setUser(null)
+      setNotes([])
       setAuthenticated(false)
       noteService.setToken(null)
       window.localStorage.removeItem('AppNoteUser')
@@ -65,6 +66,7 @@ const App = () => {
     setIsLoggingOut(true)
     await sleep(1500) // <-- not needed
     setUser(null)
+    setNotes([])
     setAuthenticated(false)
     noteService.setToken(null)
     window.localStorage.removeItem('AppNoteUser')

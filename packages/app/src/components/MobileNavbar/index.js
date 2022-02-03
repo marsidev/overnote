@@ -8,6 +8,7 @@ import {
 } from 'chakra-ui-bottom-navigation'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { Spinner } from '@chakra-ui/react'
 
 const navIconProps = {
   h: 4,
@@ -62,8 +63,15 @@ const MobileNavbar = (props) => {
       </MotionItem>
 
       {user && (
-        <MotionItem onClick={handleLogout} {...navItemsProps}>
-          <NavIcon as={FaSignOutAlt} {...navIconProps} />
+        <MotionItem
+          disabled={isLoggingOut}
+          onClick={isLoggingOut ? null : handleLogout}
+          {...navItemsProps}
+        >
+          <NavIcon
+            as={isLoggingOut ? Spinner : FaSignOutAlt}
+            {...navIconProps}
+          />
           <NavLabel>Logout</NavLabel>
         </MotionItem>
       )}

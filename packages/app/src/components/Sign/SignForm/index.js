@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Box, Heading, FormControl, FormLabel, Input, Button, useColorModeValue, Text } from '@chakra-ui/react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { isMobile } from '@Components/DeviceDetect'
 
 const SignForm = (props) => {
   const { handleSign, isLoading, headingText, error, setError } = props
@@ -12,10 +10,8 @@ const SignForm = (props) => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [pageCount, setPageCount] = useState(0)
-  const mobile = isMobile()
 
   const boxShadow = useColorModeValue('lg', 'rgba(136, 153, 166, 20%) 0px 2px 15px 0px')
-  // const pathName = useLocation().pathname
   const { pathname: path, state } = useLocation()
   const previousPath = state?.from || 'unknown'
 

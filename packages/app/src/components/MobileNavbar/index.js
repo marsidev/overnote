@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { FaHome, FaSun, FaMoon, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
+import {
+  FaSignInAlt as LoginIcon,
+  FaSignOutAlt as LogoutIcon
+} from 'react-icons/fa'
+import {
+  RiHomeFill as HomeIcon,
+  RiSunFill as SunIcon,
+  RiMoonFill as MoonIcon
+} from 'react-icons/ri'
 import {
   BottomNavigation as NavContainer,
   BottomNavigationItem as NavItem,
@@ -46,19 +54,21 @@ const MobileNavbar = (props) => {
       variant='float'
       showLabel='never'
       className={`${className}__mobile`}
-      boxShadow={'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'}
+      boxShadow={
+        'rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
+      }
       {...rest}
     >
       <MotionItem onClick={toggleColorMode} {...navItemsProps}>
         <NavIcon
-          as={colorMode === 'light' ? FaMoon : FaSun}
+          as={colorMode === 'light' ? MoonIcon : SunIcon}
           {...navIconProps}
         />
         <NavLabel>Theme</NavLabel>
       </MotionItem>
 
       <MotionItem onClick={() => navigate('/')} {...navItemsProps}>
-        <NavIcon as={FaHome} {...navIconProps} />
+        <NavIcon as={HomeIcon} {...navIconProps} />
         <NavLabel>Home</NavLabel>
       </MotionItem>
 
@@ -68,17 +78,14 @@ const MobileNavbar = (props) => {
           onClick={isLoggingOut ? null : handleLogout}
           {...navItemsProps}
         >
-          <NavIcon
-            as={isLoggingOut ? Spinner : FaSignOutAlt}
-            {...navIconProps}
-          />
+          <NavIcon as={isLoggingOut ? Spinner : LogoutIcon} {...navIconProps} />
           <NavLabel>Logout</NavLabel>
         </MotionItem>
       )}
 
       {!user && (
         <MotionItem onClick={() => navigate('/login')} {...navItemsProps}>
-          <NavIcon as={FaSignInAlt} {...navIconProps} />
+          <NavIcon as={LoginIcon} {...navIconProps} />
         </MotionItem>
       )}
     </NavContainer>

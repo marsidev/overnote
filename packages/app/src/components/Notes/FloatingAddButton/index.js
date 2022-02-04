@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { FaPlus } from 'react-icons/fa'
 
 const FloatingAddButton = (props) => {
-  const { openFloatingForm } = props
+  const { openFloatingForm, ...rest } = props
 
   const MotionButton = motion(IconButton)
 
@@ -68,6 +68,7 @@ const FloatingAddButton = (props) => {
       fontSize='20px'
       boxShadow='rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
       icon={<FaPlus />}
+      {...rest}
     />
   )
 }

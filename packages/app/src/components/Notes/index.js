@@ -23,7 +23,7 @@ const NotesSegment = (props) => {
   if (notesToShow.length === 0) return null
 
   return (
-    <Box px={[0, 2, 3, 4]} pt={4} pb={10}>
+    <Box px={[0, 2, 3, 4]} pb={10}>
       <Flex
         alignItems='center'
         justifyContent='center'
@@ -204,36 +204,39 @@ const Notes = (props) => {
       <Box justify='center' align='center' mt={4}>
         <AddNoteForm addNote={addNote} />
 
-        <NotesSegment
-          title='Pinned'
-          notes={notes}
-          setSelectedId={setSelectedId}
-          deleteNote={deleteNote}
-          updateNote={updateNote}
-          openNoteDetail={openNoteDetail}
-        />
+        <Box pb={6}>
+          <NotesSegment
+            title='Pinned'
+            notes={notes}
+            setSelectedId={setSelectedId}
+            deleteNote={deleteNote}
+            updateNote={updateNote}
+            openNoteDetail={openNoteDetail}
+          />
 
-        <NotesSegment
-          title='Others'
-          notes={notes}
-          setSelectedId={setSelectedId}
-          deleteNote={deleteNote}
-          updateNote={updateNote}
-          openNoteDetail={openNoteDetail}
-        />
+          <NotesSegment
+            title='Others'
+            notes={notes}
+            setSelectedId={setSelectedId}
+            deleteNote={deleteNote}
+            updateNote={updateNote}
+            openNoteDetail={openNoteDetail}
+          />
+        </Box>
 
-        {!mobile
-          ? null
-          : (
-              !floatingFormIsOpen
-                ? <FloatingAddButton openFloatingForm={openFloatingForm} />
-                : (<FloatingForm
-                  addNote={addNote}
-                  floatingFormIsOpen={floatingFormIsOpen}
-                  closeFloatingForm={closeFloatingForm}
-                />)
-            )
-        }
+        {mobile && (
+          <>
+            <FloatingAddButton
+              openFloatingForm={openFloatingForm}
+              display={floatingFormIsOpen ? 'none' : 'flex'}
+            />
+            <FloatingForm
+              addNote={addNote}
+              floatingFormIsOpen={floatingFormIsOpen}
+              closeFloatingForm={closeFloatingForm}
+            />
+          </>
+        )}
       </Box>
 
       {selectedId && (

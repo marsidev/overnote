@@ -130,17 +130,18 @@ const Notes = (props) => {
       }
       const newNotes = [...notes, newNote]
 
-      // save note on local storage
       updateNotesLocally(newNotes)
-      console.log(`Temporary note ${newNoteId} added to LS`)
+      console.log(`note ${newNoteId} saved on LS`)
 
-      // save note on server db
-      const savedNote = await noteService.create(newNote)
-      console.log(`note ${savedNote.id} saved on server`)
+      if (user) {
+        // save note on server db
+        const savedNote = await noteService.create(newNote)
+        console.log(`note ${savedNote.id} saved on server`)
 
-      // inject updated server note to the store
-      injectNote(savedNote)
-      console.log('LS updated with server note')
+        // inject updated server note to the store
+        injectNote(savedNote)
+        console.log('LS updated with server note')
+      }
     } catch (error) {
       handleErrors(error)
     }
@@ -151,8 +152,11 @@ const Notes = (props) => {
       setSelectedId(null)
       const newNotes = notes.filter(e => e.id !== id)
       updateNotesLocally(newNotes)
-      await noteService.deleteNote(id)
-      console.log(`Note ${id} deleted`)
+
+      if (user) {
+        await noteService.deleteNote(id)
+        console.log(`Note ${id} deleted`)
+      }
     } catch (error) {
       handleErrors(error)
     }
@@ -162,10 +166,15 @@ const Notes = (props) => {
     try {
       const newNotes = notes.map(note => (note.id !== id ? note : noteObject))
       updateNotesLocally(newNotes)
-      const savedNote = await noteService.update(id, noteObject)
-      injectNote(savedNote)
-      console.log(`Note ${id} updated`)
-      return savedNote
+
+      if (user) {
+        const savedNote = await noteService.update(id, noteObject)
+        injectNote(savedNote)
+        console.log(`Note ${id} updated`)
+        return savedNote
+      } else {
+        return noteObject
+      }
     } catch (error) {
       handleErrors(error)
     }

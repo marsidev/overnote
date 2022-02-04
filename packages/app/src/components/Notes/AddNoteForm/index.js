@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react'
-import { Input, Box, useColorModeValue, useToast } from '@chakra-ui/react'
+import { Input, Box, useColorModeValue } from '@chakra-ui/react'
 import { useFocus, useOutsideHandler, useCtrlEnterDetecter, useEnterKeyDetecter } from '@Hooks'
-import genToast from '@Components/Toast'
+// import genToast from '@Components/Toast'
 import IconsGroup from '@Notes/AddNoteForm/IconsGroup'
 import TextareaAutosize from 'react-autosize-textarea'
 import { readColorPicked } from '@Utils/funcs'
 import { appColors } from '@Utils/theming'
 import { AddNoteFormProps } from '@Utils/props'
-import { checkConnection } from '@Utils/connection'
+// import { checkConnection } from '@Utils/connection'
 
 const {
   containerProps,
@@ -27,7 +27,7 @@ const AddNoteForm = ({ addNote }) => {
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [pickedBgColor, setPickedBgColor] = useState('default')
   const [newPinnedStatus, setNewPinnedStatus] = useState(false)
-  const toast = useToast()
+  // const toast = useToast()
 
   const boxRef = useRef(null)
   const titleRef = useRef(null)
@@ -65,11 +65,11 @@ const AddNoteForm = ({ addNote }) => {
     event.preventDefault()
     if (isFormVisible) {
       if (newNoteContent !== '' || newNoteTitle !== '') {
-        const state = await checkConnection()
-        if (state !== 'connected') {
-          genToast({ toast, status: 'error', description: 'You are offline' })
-          return
-        }
+        // const state = await checkConnection()
+        // if (state !== 'connected') {
+        //   genToast({ toast, status: 'error', description: 'You are offline' })
+        //   return
+        // }
 
         const noteObject = {
           title: newNoteTitle,
@@ -86,7 +86,7 @@ const AddNoteForm = ({ addNote }) => {
         setNoteInputBlur()
         setPickedBgColor('default')
         setNewPinnedStatus(false)
-        genToast({ toast, status: 'success', description: 'Note added!' })
+        // genToast({ toast, status: 'success', description: 'Note added!' })
         await addNote(noteObject)
       } else {
         setIsFormVisible(false)

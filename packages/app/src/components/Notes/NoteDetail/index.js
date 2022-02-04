@@ -169,23 +169,25 @@ const NoteDetail = (props) => {
   }
 
   return (
-    <>
-      <Modal
-        isOpen={modalNoteIsOpen}
-        onClose={closeNoteDetail}
-        onEsc={handleUpdate}
-        onOverlayClick={handleUpdate}
-        isCentered
-        blockScrollOnMount={false}
-        motionPreset='slideInBottom'
-        size='sm'
+    <Modal
+      isOpen={modalNoteIsOpen}
+      onClose={closeNoteDetail}
+      onEsc={handleUpdate}
+      onOverlayClick={handleUpdate}
+      isCentered
+      blockScrollOnMount={false}
+      motionPreset='slideInBottom'
+      size='xs'
+    >
+      <ModalOverlay />
+      <ModalContent
+        borderRadius={16}
+        left={-1}
+        // width='80%'
       >
-        <ModalOverlay />
-        <ModalContent borderRadius={16}>
-          <Form {...formProps} />
-        </ModalContent>
-      </Modal>
-    </>
+        <Form {...formProps} />
+      </ModalContent>
+    </Modal>
   )
 }
 

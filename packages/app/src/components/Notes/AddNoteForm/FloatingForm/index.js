@@ -160,7 +160,7 @@ const FloatingForm = props => {
       onOverlayClick={handleSubmit}
       isCentered
       blockScrollOnMount={false}
-      size='sm'
+      size='xs'
     >
       <ModalOverlay />
       <ModalContent

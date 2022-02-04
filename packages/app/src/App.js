@@ -10,7 +10,7 @@ import userService from '@Services/users'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { RequireNoAuth } from '@Utils/routing'
 import theme from '@Theme'
-import { AnimatePresence } from 'framer-motion'
+// import { AnimateSharedLayout } from 'framer-motion'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -77,7 +77,7 @@ const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <AnimatePresence exitBeforeEnter initial={false}>
+      {/* <AnimateSharedLayout type='crossfade'> */}
         <ScaleFade initialScale={0.9} in='true'>
           <Box className='app'>
             <NavBar
@@ -121,7 +121,7 @@ const App = () => {
             <Footer className='app__footer' />
           </Box>
         </ScaleFade>
-      </AnimatePresence>
+      {/* </AnimateSharedLayout> */}
     </ChakraProvider>
   )
 }

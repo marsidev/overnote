@@ -40,7 +40,7 @@ const SignForm = (props) => {
 
   const variants = {
     entering: {
-      scale: 0.8, opacity: 0, y: 100
+      scale: 0.8, opacity: 0, y: 65
     },
     entered: {
       scale: 1, opacity: 1, transition: { duration: 0.2, ease: 'easeOut' }

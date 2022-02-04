@@ -83,32 +83,6 @@ const genToast = ({ ...props }) => {
             {description}
           </GridItem>
 
-          {/* <GridItem
-            rowSpan={1}
-            colSpan={1}
-            alignItems='center'
-            textAlign='right'
-            pl='1.60rem'
-            display='flex'
-            // border='1px solid white'
-          >
-            <IconButton
-              onClick={() => toast.close()}
-              icon={<MdClose />}
-              aria-label='Close toast'
-              variant='ghost'
-              borderRadius={50}
-              fontSize='1.1rem'
-              color='#e8eaed'
-              opacity={0.71}
-              _hover={{
-                opacity: 0.87,
-                bg: 'rgba(255, 255, 255, 0.18)'
-              }}
-              size='sm'
-            />
-          </GridItem> */}
-
         </Grid>
       </Box>
     )

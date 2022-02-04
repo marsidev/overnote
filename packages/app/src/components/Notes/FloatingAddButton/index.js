@@ -21,17 +21,12 @@ const FloatingAddButton = (props) => {
   const buttonVariants = {
     initial: {
       opacity: 1,
-      // scale: 0,
-      top: '98%',
+      scale: 1,
+      top: '80%',
       left: '80%',
-      transition: { duration: 0.5, ease: 'easeOut' },
       backgroundColor: bgColor
     },
     animate: {
-      opacity: 1,
-      scale: 1,
-      top: '98%',
-      left: '80%',
       transition: { duration: 0.5, ease: 'easeOut' },
       backgroundColor: bgColor
     },
@@ -49,6 +44,7 @@ const FloatingAddButton = (props) => {
 
   return (
     <MotionButton
+      layout
       layoutId='add-note'
       aria-label='Add note'
       onClick={() => openFloatingForm()}

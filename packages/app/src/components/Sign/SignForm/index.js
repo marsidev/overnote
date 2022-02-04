@@ -40,8 +40,7 @@ const SignForm = (props) => {
     pre_launch: {
       scale: 0.4,
       opacity: 0.8,
-      y: '100%',
-      transition: { duration: 0.3, ease: 'easeOut' }
+      y: 600
     },
     launch: {
       scale: 1,
@@ -52,16 +51,14 @@ const SignForm = (props) => {
     pre_flip: {
       scale: 1,
       opacity: 1,
-      y: 65,
-      rotateY: 180,
-      transition: { duration: 0.3, ease: 'easeOut' }
+      y: 65
     },
     flip: {
       scale: 1,
       opacity: 1,
       y: 65,
-      rotateY: 0,
-      transition: { duration: 0.3, ease: 'easeOut' }
+      rotateY: 360,
+      transition: { duration: 0.5, ease: 'easeOut' }
     }
   }
 
@@ -69,6 +66,7 @@ const SignForm = (props) => {
   if (previousPath !== 'unknown') {
     if (path === '/register' && previousPath === '/login') animate = 'flip'
     else if (path === '/login' && previousPath === '/register') animate = 'flip'
+    else if (path === previousPath) animate = false
     else animate = 'launch'
   } else animate = 'launch'
 
@@ -82,8 +80,8 @@ const SignForm = (props) => {
     >
       <motion.div
         variants={variants}
-        initial={`pre_${animate}`}
         animate={animate}
+        initial={animate ? `pre_${animate}` : false}
         key={pageCount}
       >
         <Box

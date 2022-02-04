@@ -191,14 +191,12 @@ const Notes = (props) => {
       scale: 0.4,
       opacity: 0.8,
       width: '90%',
-      y: '100%',
-      transition: { duration: 0.3, ease: 'easeOut' }
+      y: 600
     },
     animate: {
       scale: 1,
       opacity: 1,
-      width: '90%',
-      y: '0%',
+      y: 0,
       transition: { duration: 0.3, ease: 'easeOut' }
     }
   }

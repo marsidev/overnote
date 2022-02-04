@@ -22,15 +22,15 @@ const FloatingAddButton = (props) => {
     initial: {
       opacity: 1,
       // scale: 0,
-      top: '75%',
+      top: '98%',
       left: '80%',
-      transition: { duration: 0.3, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: 'easeOut' },
       backgroundColor: bgColor
     },
     animate: {
       opacity: 1,
       scale: 1,
-      top: '75%',
+      top: '98%',
       left: '80%',
       transition: { duration: 0.5, ease: 'easeOut' },
       backgroundColor: bgColor

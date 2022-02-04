@@ -15,7 +15,9 @@ const SignForm = (props) => {
   const mobile = isMobile()
 
   const boxShadow = useColorModeValue('lg', 'rgba(136, 153, 166, 20%) 0px 2px 15px 0px')
-  const pathName = useLocation().pathname
+  // const pathName = useLocation().pathname
+  const { pathname: path, state } = useLocation()
+  const previousPath = state?.from || 'unknown'
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -36,16 +38,43 @@ const SignForm = (props) => {
     setPassword('')
     setError(null)
     setPageCount(pageCount + 1)
-  }, [pathName])
+  }, [path])
 
   const variants = {
-    entering: {
-      scale: 0.8, opacity: 0, y: 65
+    pre_launch: {
+      scale: 0.4,
+      opacity: 0.8,
+      y: '100%',
+      transition: { duration: 0.3, ease: 'easeOut' }
     },
-    entered: {
-      scale: 1, opacity: 1, transition: { duration: 0.2, ease: 'easeOut' }
+    launch: {
+      scale: 1,
+      opacity: 1,
+      y: 65,
+      transition: { duration: 0.3, ease: 'easeOut' }
+    },
+    pre_flip: {
+      scale: 1,
+      opacity: 1,
+      y: 65,
+      rotateY: 180,
+      transition: { duration: 0.3, ease: 'easeOut' }
+    },
+    flip: {
+      scale: 1,
+      opacity: 1,
+      y: 65,
+      rotateY: 0,
+      transition: { duration: 0.3, ease: 'easeOut' }
     }
   }
+
+  let animate
+  if (previousPath !== 'unknown') {
+    if (path === '/register' && previousPath === '/login') animate = 'flip'
+    else if (path === '/login' && previousPath === '/register') animate = 'flip'
+    else animate = 'launch'
+  } else animate = 'launch'
 
   return (
     <Box
@@ -57,8 +86,8 @@ const SignForm = (props) => {
     >
       <motion.div
         variants={variants}
-        initial='entering'
-        animate='entered'
+        initial={`pre_${animate}`}
+        animate={animate}
         key={pageCount}
       >
         <Box
@@ -75,7 +104,7 @@ const SignForm = (props) => {
 
           <Box my={4} textAlign='left'>
             <form onSubmit={handleSubmit} autoComplete='off'>
-              {pathName === '/register' && (
+              {path === '/register' && (
                 <FormControl pb={4} autoComplete='off'>
                   <FormLabel>Name</FormLabel>
                   <Input
@@ -122,7 +151,7 @@ const SignForm = (props) => {
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.1 }}
               >
-                {pathName === '/login' ? 'Sign in' : 'Sign up'}
+                {path === '/login' ? 'Sign in' : 'Sign up'}
               </MotionButton>
             </form>
           </Box>
@@ -140,14 +169,15 @@ const SignForm = (props) => {
           )}
 
           <Box textAlign='center' mt={4}>
-            {pathName === '/login'
+            {path === '/login'
               ? 'Not registered yet? '
               : 'Already registered? '}
             <Link
-              to={pathName === '/login' ? '/register' : '/login'}
+              to={path === '/login' ? '/register' : '/login'}
+              state={{ from: path }}
               style={{ color: '#006da0' }}
             >
-              {pathName === '/login' ? 'Register' : 'Login'}
+              {path === '/login' ? 'Register' : 'Login'}
             </Link>
           </Box>
         </Box>

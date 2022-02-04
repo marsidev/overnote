@@ -23,7 +23,7 @@ const NotesSegment = (props) => {
   if (notesToShow.length === 0) return null
 
   return (
-    <Box px={[0, 2, 3, 4]} pb={10}>
+    <Box px={[0, 2, 3, 4]} pb={[6, 7, 8, 10]}>
       <Flex
         alignItems='center'
         justifyContent='center'
@@ -187,19 +187,27 @@ const Notes = (props) => {
   }, [user])
 
   const containerVariants = {
-    entering: {
-      scale: 0.8, opacity: 0, width: '25%'
+    initial: {
+      scale: 0.4,
+      opacity: 0.8,
+      width: '90%',
+      y: '100%',
+      transition: { duration: 0.3, ease: 'easeOut' }
     },
-    entered: {
-      scale: 1, opacity: 1, width: '90%', transition: { duration: 0.2, ease: 'easeOut' }
+    animate: {
+      scale: 1,
+      opacity: 1,
+      width: '90%',
+      y: '0%',
+      transition: { duration: 0.3, ease: 'easeOut' }
     }
   }
 
   return (
     <motion.div
       variants={containerVariants}
-      initial='entering'
-      animate='entered'
+      initial='initial'
+      animate='animate'
     >
       <Box justify='center' align='center' mt={4}>
         <AddNoteForm addNote={addNote} />

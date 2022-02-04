@@ -5,18 +5,19 @@ import loginService from '@Services/login'
 import SignForm from '@Components/Sign/SignForm'
 import { useLocation } from 'react-router-dom'
 
-export default function Sign({ handleSubmit }) {
+const Sign = ({ handleSubmit }) => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const pathName = useLocation().pathname
+
+  const { pathname: path } = useLocation()
 
   const handleSign = async payload => {
     try {
       setError(null)
       setIsLoading(true)
-      if (pathName === '/register') {
-        await usersService.register(payload)
-      }
+
+      if (path === '/register') await usersService.register(payload)
+
       const user = await loginService.login(payload)
       noteService.setToken(user.token)
       setIsLoading(false)
@@ -33,9 +34,11 @@ export default function Sign({ handleSubmit }) {
     <SignForm
       handleSign={handleSign}
       isLoading={isLoading}
-      headingText={pathName === '/login' ? 'Login' : 'Register'}
+      headingText={path === '/login' ? 'Login' : 'Register'}
       error={error}
       setError={setError}
     />
   )
 }
+
+export default Sign

@@ -18,10 +18,7 @@ const IconsGroup = (props) => {
     launchedBy
   } = props
 
-  const bgColor = useColorModeValue(
-    'rgba(95, 99, 104, 0.157)',
-    'rgba(154, 160, 166, 0.157)'
-  )
+  const bgColor = useColorModeValue('rgba(95, 99, 104, 0.157)', 'rgba(154, 160, 166, 0.157)')
 
   const _iconsProps = addProps(iconsProps, { _hover: { ...iconsProps._hover, bg: bgColor } })
   const _buttonProps = addProps(buttonProps, { _hover: { ...buttonProps._hover, bg: bgColor } })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Flex, Text, Divider, useDisclosure, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, useDisclosure } from '@chakra-ui/react'
 import noteService from '@Services/notes'
 import Card from '@Notes/Card'
 import AddNoteForm from '@Notes/AddNoteForm'
@@ -8,7 +8,8 @@ import { sortNotes } from '@Utils/funcs'
 import NoteDetail from '@Notes/NoteDetail'
 import { motion } from 'framer-motion'
 import { isMobile } from '@Components/DeviceDetect'
-import { FaPlus } from 'react-icons/fa'
+import FloatingAddButton from '@Notes/FloatingAddButton'
+import FloatingForm from '@Notes/AddNoteForm/FloatingForm'
 
 const NotesSegment = (props) => {
   const { title, notes, setSelectedId, deleteNote, updateNote, openNoteDetail } = props
@@ -70,10 +71,17 @@ const Notes = (props) => {
   const mobile = isMobile()
 
   const [selectedId, setSelectedId] = useState(null)
+
   const {
     isOpen: modalNoteIsOpen,
     onOpen: openNoteDetail,
     onClose: closeNoteDetail
+  } = useDisclosure()
+
+  const {
+    isOpen: floatingFormIsOpen,
+    onOpen: openFloatingForm,
+    onClose: closeFloatingForm
   } = useDisclosure()
 
   const updateNotesLocally = notes => {
@@ -169,12 +177,6 @@ const Notes = (props) => {
     }
   }, [user])
 
-  const MotionButton = motion(IconButton)
-  const buttonVariants = {
-    initial: { scale: 1 },
-    tap: { scale: 0.9, transition: { duration: 0.1, ease: 'easeOut' } }
-  }
-
   const containerVariants = {
     entering: {
       scale: 0.8, opacity: 0, width: '25%'
@@ -211,26 +213,18 @@ const Notes = (props) => {
           openNoteDetail={openNoteDetail}
         />
 
-        {mobile && (
-          <MotionButton
-            aria-label='Add note'
-            variants={buttonVariants}
-            initial='initial'
-            whileTap='tap'
-            variant='solid'
-            colorScheme={useColorModeValue('blue', 'gray')}
-            borderRadius='full'
-            border='none'
-            zIndex={4}
-            size='lg'
-            pos='fixed'
-            bottom='15%'
-            right='4%'
-            fontSize='20px'
-            boxShadow='rgba(0, 0, 0, 0.19) 0px 4px 12px, rgba(0, 0, 0, 0.23) 0px 4px 4px'
-            icon={<FaPlus />}
-          />
-        )}
+        {!mobile
+          ? null
+          : (
+              !floatingFormIsOpen
+                ? <FloatingAddButton openFloatingForm={openFloatingForm} />
+                : (<FloatingForm
+                  addNote={addNote}
+                  floatingFormIsOpen={floatingFormIsOpen}
+                  closeFloatingForm={closeFloatingForm}
+                />)
+            )
+        }
       </Box>
 
       {selectedId && (

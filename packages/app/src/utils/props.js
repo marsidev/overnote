@@ -60,6 +60,7 @@ export const AddNoteFormProps = () => {
     type: 'text',
     placeholder: 'Take a note...',
     maxRows: 26,
+    rows: 1,
     style: {
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
       fontSize: '.875rem',

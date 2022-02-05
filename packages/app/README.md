@@ -1,6 +1,6 @@
 <div align="center">
 
-  # <img src="https://raw.githubusercontent.com/marsigliadev/notes-app-monorepo/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
+  # <img src="https://raw.githubusercontent.com/marsigliadev/overnote/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
   
   ***A simple notes app***
 </div>
@@ -18,7 +18,7 @@
 
 ## About the project
 
-Read the main [README.md](https://github.com/marsigliadev/notes-app-monorepo/blob/main/README.md) file.
+Read the main [README.md](https://github.com/marsigliadev/overnote/blob/main/README.md) file.
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
 
@@ -35,7 +35,7 @@ Read the main [README.md](https://github.com/marsigliadev/notes-app-monorepo/blo
 
 ## Contributing
 
-Any contributions you make are greatly appreciated. If you have a suggestion that would make this better, please fork the repo and create a Pull Request. You can also simply [open an issue](https://github.com/marsigliadev/notes-app-monorepo/issues/new).
+Any contributions you make are greatly appreciated. If you have a suggestion that would make this better, please fork the repo and create a Pull Request. You can also simply [open an issue](https://github.com/marsigliadev/overnote/issues/new).
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
 

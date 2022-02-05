@@ -21,7 +21,7 @@ app.use(morgan('dev'))
 
 // static files
 app.use(express.static('../app/build'))
-app.use('/static', express.static('public'))
+app.use('/static', express.static('assets'))
 
 // Sentry
 if (process.env.NODE_ENV !== 'test') {

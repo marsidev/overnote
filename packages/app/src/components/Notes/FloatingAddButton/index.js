@@ -1,46 +1,13 @@
 import React, { memo } from 'react'
-import { IconButton, useColorModeValue, useToken } from '@chakra-ui/react'
+import { IconButton, useColorModeValue } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { FaPlus } from 'react-icons/fa'
+import { floatingButtonVariants } from '@Utils/animations'
 
 const FloatingAddButton = (props) => {
   const { openFloatingForm, ...rest } = props
 
   const MotionButton = motion(IconButton)
-
-  const bgColor = useColorModeValue(
-    useToken('colors', 'blue.500'),
-    useToken('colors', 'blue.600')
-  )
-
-  const bgHoverColor = useColorModeValue(
-    useToken('colors', 'blue.400'),
-    useToken('colors', 'blue.500')
-  )
-
-  const buttonVariants = {
-    initial: {
-      opacity: 1,
-      scale: 1,
-      top: '80%',
-      left: '80%',
-      backgroundColor: bgColor
-    },
-    animate: {
-      transition: { duration: 0.5, ease: 'easeOut' },
-      backgroundColor: bgColor
-    },
-    tap: {
-      scale: 0.9,
-      backgroundColor: bgHoverColor,
-      transition: { duration: 0.1, ease: 'easeOut' }
-    },
-    hover: {
-      scale: 1.1,
-      backgroundColor: bgHoverColor,
-      transition: { duration: 0.1, ease: 'easeOut' }
-    }
-  }
 
   return (
     <MotionButton
@@ -48,14 +15,16 @@ const FloatingAddButton = (props) => {
       layoutId='add-note'
       aria-label='Add note'
       onClick={() => openFloatingForm()}
-      variants={buttonVariants}
+      variants={floatingButtonVariants}
       initial='initial'
       animate='animate'
       whileTap='tap'
       whileHover='hover'
       variant='solid'
-      // bg={useColorModeValue('blue.500', 'blue.600')}
+      bg={useColorModeValue('blue.500', 'blue.600')}
       color='white'
+      _hover={{ bg: useColorModeValue('blue.400', 'blue.500') }}
+      _active={{ bg: useColorModeValue('blue.400', 'blue.500') }}
       borderRadius='full'
       border='none'
       zIndex={4}

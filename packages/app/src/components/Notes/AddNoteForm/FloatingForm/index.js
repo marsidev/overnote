@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Modal, ModalOverlay, ModalContent, useColorModeValue, Box, Input } from '@chakra-ui/react'
 import { AddNoteFormProps } from '@Utils/props'
-// import { checkConnection } from '@Utils/connection'
 import { appColors } from '@Utils/theming'
-// import genToast from '@Components/Toast'
 import IconsGroup from '@Notes/AddNoteForm/IconsGroup'
 import TextareaAutosize from 'react-autosize-textarea'
 import { readColorPicked } from '@Utils/funcs'
+import { floatingFormVariants } from '@Utils/animations'
 
 const { containerProps, titleInputProps, contentInputProps } = AddNoteFormProps()
 
@@ -91,24 +90,6 @@ const FloatingForm = props => {
   const [noteTitle, setNoteTitle] = useState('')
   const [bgColor, setBgColor] = useState('default')
   const [isPinned, setPinned] = useState(false)
-  // const toast = useToast()
-
-  const modalVariants = {
-    initial: {
-      top: '29%',
-      left: '35%',
-      width: '48px',
-      height: '48px',
-      transition: { duration: 0.3, ease: 'easeOut' }
-    },
-    animate: {
-      left: '-1%',
-      top: '0%',
-      width: 'auto',
-      height: 'auto',
-      transition: { duration: 0.3, ease: 'easeOut' }
-    }
-  }
 
   const handleSubmit = async event => {
     event?.preventDefault()
@@ -164,7 +145,7 @@ const FloatingForm = props => {
     >
       <ModalOverlay />
       <ModalContent
-        variants={modalVariants}
+        variants={floatingFormVariants}
         initial='initial'
         animate='animate'
         borderRadius={16}

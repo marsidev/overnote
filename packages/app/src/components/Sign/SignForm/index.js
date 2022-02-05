@@ -3,6 +3,7 @@ import { Box, Heading, FormControl, FormLabel, Input, Button, useColorModeValue,
 import { useLocation, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { isMobile } from '@Components/DeviceDetect'
+import { signContainerVariants } from '@Utils/animations'
 
 const SignForm = (props) => {
   const { handleSign, isLoading, headingText, error, setError } = props
@@ -39,32 +40,6 @@ const SignForm = (props) => {
     setPageCount(pageCount + 1)
   }, [path])
 
-  const variants = {
-    pre_launch: {
-      scale: 0.4,
-      opacity: 0.8,
-      y: 600
-    },
-    launch: {
-      scale: 1,
-      opacity: 1,
-      y: 65,
-      transition: { duration: 0.3, ease: 'easeOut' }
-    },
-    pre_flip: {
-      scale: 1,
-      opacity: 1,
-      y: 65
-    },
-    flip: {
-      scale: 1,
-      opacity: 1,
-      y: 65,
-      rotateY: 360,
-      transition: { duration: 0.5, ease: 'easeOut' }
-    }
-  }
-
   let animate
   if (previousPath !== 'unknown') {
     if (path === '/register' && previousPath === '/login') animate = 'flip'
@@ -82,7 +57,7 @@ const SignForm = (props) => {
       h={mobile ? '68vh' : '62vh'}
     >
       <motion.div
-        variants={variants}
+        variants={signContainerVariants}
         animate={animate}
         initial={animate ? `pre_${animate}` : false}
         key={pageCount}

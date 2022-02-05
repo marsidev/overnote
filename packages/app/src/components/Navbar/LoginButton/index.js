@@ -2,14 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import { basicButtonVariants as variants } from '@Utils/animations'
 
 const LoginButton = ({ colorMode }) => {
   const MotionButton = motion(Button)
-  const variants = {
-    initial: { scale: 1 },
-    tap: { scale: 0.9, transition: { duration: 0.1, ease: 'easeOut' } },
-    hover: { scale: 1.1, transition: { duration: 0.1, ease: 'easeOut' } }
-  }
 
   return (
     <Link to='/login'>

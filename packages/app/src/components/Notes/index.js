@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import { isMobile } from '@Components/DeviceDetect'
 import FloatingAddButton from '@Notes/FloatingAddButton'
 import FloatingForm from '@Notes/AddNoteForm/FloatingForm'
+import { notesContainerVariants } from '@Utils/animations'
 
 const NotesSegment = (props) => {
   const { title, notes, setSelectedId, deleteNote, updateNote, openNoteDetail } = props
@@ -186,24 +187,9 @@ const Notes = (props) => {
     }
   }, [user])
 
-  const containerVariants = {
-    initial: {
-      scale: 0.4,
-      opacity: 0.8,
-      width: '90%',
-      y: 600
-    },
-    animate: {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: 'easeOut' }
-    }
-  }
-
   return (
     <motion.div
-      variants={containerVariants}
+      variants={notesContainerVariants}
       initial='initial'
       animate='animate'
     >

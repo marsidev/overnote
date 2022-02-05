@@ -3,14 +3,9 @@ import { Menu, MenuButton, Button, Flex, Avatar } from '@chakra-ui/react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import UserOptions from '@Components/Navbar/UserOptions'
 import { motion } from 'framer-motion'
+import { basicButtonVariants as variants } from '@Utils/animations'
 
 const ChevronMotion = ({ isMobile }) => {
-  const variants = {
-    initial: { scale: 1 },
-    tap: { scale: 0.9, transition: { duration: 0.1, ease: 'easeOut' } },
-    hover: { scale: 1.1, transition: { duration: 0.1, ease: 'easeOut' } }
-  }
-
   return (
     <motion.div
       variants={variants}

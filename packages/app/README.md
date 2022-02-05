@@ -1,8 +1,8 @@
 <div align="center">
 
-  # <img src="https://raw.githubusercontent.com/midudev/codi.link/main/assets/favicon.ico" height="30px"/> [KeepIt](https://radiant-mountain-30055.herokuapp.comm)
+  # <img src="https://raw.githubusercontent.com/marsigliadev/notes-app-monorepo/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
   
-  <!-- ***Your HTML5/CSS3/JS/JavaScript Playground Editor*** -->
+  ***A simple notes app***
 </div>
 
 <!-- TABLE OF CONTENTS -->

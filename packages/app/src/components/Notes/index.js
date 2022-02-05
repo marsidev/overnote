@@ -194,9 +194,9 @@ const Notes = (props) => {
       animate='animate'
     >
       <Box justify='center' align='center' mt={4}>
-        <AddNoteForm addNote={addNote} />
+        {!mobile && <AddNoteForm addNote={addNote} />}
 
-        <Box pb={6}>
+        <Box pb={6} pt={mobile ? 6 : null}>
           <NotesSegment
             title='Pinned'
             notes={notes}

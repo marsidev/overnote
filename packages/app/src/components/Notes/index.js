@@ -8,7 +8,7 @@ import { sortNotes } from '@Utils/funcs'
 import NoteDetail from '@Notes/NoteDetail'
 import { motion } from 'framer-motion'
 import { isMobile } from '@Components/DeviceDetect'
-import FloatingAddButton from '@Notes/FloatingAddButton'
+import FloatingAddButton from '@Components/FloatingAddButton'
 import FloatingForm from '@Notes/AddNoteForm/FloatingForm'
 import { notesContainerVariants } from '@Utils/animations'
 

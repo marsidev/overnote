@@ -36,7 +36,7 @@ Any contributions you make are greatly appreciated. If you have a suggestion tha
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
 
-## Contact 📭
+## Contact
 
   **Luis Marsiglia**
   - [Twitter](https://twitter.com/marsigliacr)

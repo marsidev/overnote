@@ -28,7 +28,9 @@
     "postgit": "git push origin main",
     "heroku": "git push heroku main",
     "setvar": "heroku config:set",
-    "getvar": "heroku config:get"
+    "getvar": "heroku config:get",
+    "deploy:api": "yarn workspace @notes-app/backend deploy",
+    "deploy:app": "yarn workspace @notes-app/frontend deploy"
   },
   "keywords": [
     "notes",

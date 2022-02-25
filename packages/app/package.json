@@ -30,7 +30,8 @@
     "eject": "react-scripts eject",
     "server": "json-server --watch db.json --port 3001",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "deploy": "vercel deploy --prod"
   },
   "browserslist": {
     "production": [

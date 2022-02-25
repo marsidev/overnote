@@ -15,7 +15,8 @@
     "test:watch": "yarn run test -- --watch",
     "test_notes:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/notes.test.js",
     "test_users:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/users.test.js",
-    "test_login:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/login.test.js"
+    "test_login:watch": "cross-env NODE_ENV=test PORT=1234 jest --verbose --watch tests/login.test.js",
+    "deploy": "vercel deploy --prod"
   },
   "keywords": [],
   "license": "ISC",

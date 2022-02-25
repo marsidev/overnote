@@ -12,8 +12,7 @@
     "packages/api"
   ],
   "engines": {
-    "npm": "7.x",
-    "node": "16.x",
+    "node": "14.x",
     "yarn": "1.22.x"
   },
   "main": "index.js",

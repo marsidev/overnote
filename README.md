@@ -1,6 +1,6 @@
 <div align="center">
 
-  # <img src="https://raw.githubusercontent.com/marsigliadev/overnote/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
+  # <img src="https://raw.githubusercontent.com/marsidev/overnote/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
   
   ***A simple notes app***
 </div>
@@ -80,7 +80,7 @@ Open the app in your browser (http://localhost:8888)
 
 ## Contributing
 
-Any contributions you make are greatly appreciated. If you have a suggestion that would make this better, please fork the repo and create a Pull Request. You can also simply [open an issue](https://github.com/marsigliadev/overnote/issues/new).
+Any contributions you make are greatly appreciated. If you have a suggestion that would make this better, please fork the repo and create a Pull Request. You can also simply [open an issue](https://github.com/marsidev/overnote/issues/new).
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
 

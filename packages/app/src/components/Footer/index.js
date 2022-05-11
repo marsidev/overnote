@@ -4,7 +4,7 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 import { isMobile } from '@Components/DeviceDetect'
 
 const TWITTER_URL = 'https://twitter.com/marsigliacr'
-const GITHUB_URL = 'https://github.com/marsigliadev/overnote'
+const GITHUB_URL = 'https://github.com/marsidev/overnote'
 
 const SocialButton = ({ children, href, mobile }) => {
   return (

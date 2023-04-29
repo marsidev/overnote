@@ -1,7 +1,7 @@
 <div align="center">
 
   # <img src="https://raw.githubusercontent.com/marsidev/overnote/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
-  
+
   ***A simple notes app***
 </div>
 
@@ -39,7 +39,7 @@ Any contributions you make are greatly appreciated. If you have a suggestion tha
 ## Contact
 
   **Luis Marsiglia**
-  - [Twitter](https://twitter.com/marsigliacr)
+  - [Twitter](https://twitter.com/marsidev)
   - [Email](mailto:marsiglia.business@gmail.com)
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>

@@ -1,7 +1,7 @@
 <div align="center">
 
   # <img src="https://raw.githubusercontent.com/marsidev/overnote/main/packages/app/public/favicon.ico" height="30px"/> [Overnote](https://radiant-mountain-30055.herokuapp.comm)
-  
+
   ***A simple notes app***
 </div>
 
@@ -19,7 +19,7 @@
 
 ## About the project
 
-**Overnote** is a simple notes app. It allows you to create, edit, customize and delete notes. 
+**Overnote** is a simple notes app. It allows you to create, edit, customize and delete notes.
 This project is a result of a [FullStack Bootcamp](https://www.youtube.com/watch?v=wTpuKOhGfJE&list=PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7) directed by [@midudev](https://github.com/midudev/).
 The UI is inspired on [Google Keep](https://keep.google.com/), my favorite notes app.
 
@@ -42,7 +42,7 @@ $ yarn
 ```
 
 Run the app
-  
+
 ```javascript
 $ yarn build && yarn start
 ```
@@ -87,7 +87,7 @@ Any contributions you make are greatly appreciated. If you have a suggestion tha
 ## Contact
 
   **Luis Marsiglia**
-  - [Twitter](https://twitter.com/marsigliacr)
+  - [Twitter](https://twitter.com/marsidev)
   - [Email](mailto:marsiglia.business@gmail.com)
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
